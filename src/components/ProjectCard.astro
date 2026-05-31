@@ -1,0 +1,85 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  link?: string;
+  image?: string;
+  status?: 'live' | 'wip' | 'archived';
+}
+
+const { title, description, tags, link, image, status = 'live' } = Astro.props;
+
+const statusConfig = {
+  live: { label: 'LIVE', color: 'text-green', dot: '#4CAF75' },
+  wip: { label: 'IN PROGRESS', color: 'text-amber', dot: '#E8A020' },
+  archived: { label: 'ARCHIVED', color: 'text-bc-muted', dot: '#7A7065' },
+};
+const st = statusConfig[status];
+---
+
+<article
+  class="group bg-bg-card border border-bc-border card-accent-amber hover:border-amber hover:glow-amber transition-all duration-300 flex flex-col overflow-hidden"
+  style="border-radius: 2px;"
+>
+  <!-- Image / preview area -->
+  <div class="relative aspect-video bg-bg-base border-b border-bc-border overflow-hidden">
+    {image ? (
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center scanline">
+        <!-- Decorative grid pattern for empty state -->
+        <div
+          class="absolute inset-0 opacity-30"
+          style="background-image: linear-gradient(rgba(62,139,94,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(62,139,94,0.1) 1px, transparent 1px); background-size: 32px 32px;"
+        ></div>
+        <span class="font-mono text-xs text-bc-muted tracking-widest z-10">[ PROJECT PREVIEW ]</span>
+      </div>
+    )}
+
+    <!-- Status badge -->
+    <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-bg-base bg-opacity-90 px-2 py-1 border border-bc-border" style="border-radius: 2px;">
+      <span class="inline-block w-1.5 h-1.5 rounded-full" style={`background-color: ${st.dot}; box-shadow: 0 0 4px ${st.dot};`}></span>
+      <span class:list={['font-mono text-xs tracking-wider', st.color]}>{st.label}</span>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="p-6 flex flex-col flex-1">
+    <h3 class="text-bc-text font-semibold text-xl mb-3 group-hover:text-bc-text transition-colors">
+      {title}
+    </h3>
+    <p class="text-bc-muted text-sm leading-relaxed flex-1 mb-5">
+      {description}
+    </p>
+
+    <!-- Tags -->
+    <div class="flex flex-wrap gap-2 mb-5">
+      {tags.map((tag) => (
+        <span
+          class="font-mono text-xs text-amber border border-bc-border px-2 py-0.5 tracking-wide"
+          style="border-radius: 2px;"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <!-- Link -->
+    {link && (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 font-mono text-xs text-green hover:text-green-hi hover:text-glow-green transition-all tracking-wide group/link"
+      >
+        View Project
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="group-hover/link:translate-x-0.5 transition-transform"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    )}
+  </div>
+</article>

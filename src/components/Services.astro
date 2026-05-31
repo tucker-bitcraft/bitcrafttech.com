@@ -1,0 +1,66 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import ServiceCard from './ServiceCard.astro';
+
+interface ServiceItem {
+  title: string;
+  description: string;
+  icon: string;
+  accentColor?: 'green' | 'amber';
+}
+
+const services: ServiceItem[] = [
+  {
+    title: 'Custom Software Development',
+    description: 'End-to-end development of bespoke applications. From architecture through deployment — built to your exact specifications with no off-the-shelf compromises.',
+    icon: '<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="5" width="26" height="22" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M10 13l-4 3 4 3M22 13l4 3-4 3M15 11l-3 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    accentColor: 'green',
+  },
+  {
+    title: 'Systems & Embedded Engineering',
+    description: 'Low-level software for hardware-adjacent environments. Firmware, device drivers, real-time systems, and embedded Linux — where precision and reliability are non-negotiable.',
+    icon: '<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="8" width="16" height="16" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="10" height="10" rx="0.5" fill="currentColor" opacity="0.2"/><path d="M8 12H4M8 16H4M8 20H4M24 12h4M24 16h4M24 20h4M12 8V4M16 8V4M20 8V4M12 24v4M16 24v4M20 24v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    accentColor: 'green',
+  },
+  {
+    title: 'Platform & API Architecture',
+    description: 'Scalable backend infrastructure, REST and GraphQL APIs, microservices design, and cloud-native architectures that handle growth without rewriting everything.',
+    icon: '<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="24" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="24" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M9 9.5l5 5M18 17.5l5 5M9 22.5l5-5M18 14.5l5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    accentColor: 'amber',
+  },
+  {
+    title: 'Developer Tooling & Automation',
+    description: 'Build systems, CI/CD pipelines, internal tooling, and developer experience improvements. Reduce friction, increase throughput, and ship faster.',
+    icon: '<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 10h20M6 16h12M6 22h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M22 19l4 3-4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    accentColor: 'green',
+  },
+  {
+    title: 'Data Engineering & Pipelines',
+    description: 'Data infrastructure that moves and transforms information reliably. ETL pipelines, data warehousing, real-time streaming, and analytics-ready architectures.',
+    icon: '<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 10c0-2.2 4.5-4 10-4s10 1.8 10 4v12c0 2.2-4.5 4-10 4S6 24.2 6 22V10z" stroke="currentColor" stroke-width="1.5"/><path d="M6 16c0 2.2 4.5 4 10 4s10-1.8 10-4M6 10c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="currentColor" stroke-width="1.5"/></svg>',
+    accentColor: 'amber',
+  },
+  {
+    title: 'Technical Consulting',
+    description: "Architecture reviews, technology selection, team augmentation, and engineering strategy. Get an experienced outside perspective on your toughest technical challenges.",
+    icon: '<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="10" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M6 27c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M22 18l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    accentColor: 'green',
+  },
+];
+---
+
+<section id="services" class="relative bg-bg-section py-32 clip-angle-both" style="padding-top: calc(5rem + 40px); padding-bottom: calc(5rem + 40px);">
+  <div class="max-w-7xl mx-auto px-6">
+    <SectionHeading
+      label="// 01 — SERVICES"
+      title="What We Build"
+      subtitle="Specialised expertise across the full engineering stack. No generalists, no hand-waving — just solid engineering."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {services.map((service, i) => (
+        <ServiceCard {...service} index={i} />
+      ))}
+    </div>
+  </div>
+</section>

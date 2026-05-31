@@ -1,0 +1,108 @@
+---
+import BitMascot from './BitMascot.astro';
+---
+
+<section class="relative min-h-screen flex items-center overflow-hidden">
+  <!-- Background accent line -->
+  <div
+    class="absolute top-0 left-0 right-0 h-px"
+    style="background: linear-gradient(90deg, transparent, #3E8B5E, transparent);"
+  ></div>
+
+  <!-- Background grid enhancement -->
+  <div
+    class="absolute inset-0 opacity-40"
+    style="background-image: linear-gradient(rgba(62,139,94,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(62,139,94,0.05) 1px, transparent 1px); background-size: 64px 64px;"
+  ></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 py-24 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: copy -->
+      <div>
+        <p class="font-mono text-green text-xs tracking-[0.25em] uppercase mb-6">
+          // BITCRAFT TECH
+        </p>
+
+        <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold leading-[1.05] text-bc-text mb-6">
+          We Build<br />
+          <span class="text-green text-glow-green">Industrial</span><br />
+          Software.
+        </h1>
+
+        <p class="text-bc-muted text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
+          Precision-crafted solutions for complex problems.
+          From embedded systems to enterprise platforms — built to last.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="#services"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-green text-bg-base font-semibold font-mono text-sm tracking-wide glow-green hover:glow-green-hi hover:bg-green-hi transition-all duration-200"
+            style="border-radius: 2px;"
+          >
+            See Our Work
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 px-6 py-3 border border-bc-border text-bc-text font-mono text-sm tracking-wide hover:border-green hover:text-green transition-all duration-200"
+            style="border-radius: 2px;"
+          >
+            Get In Touch
+          </a>
+        </div>
+
+        <!-- Status indicator -->
+        <div class="mt-14 flex items-center gap-3">
+          <span class="inline-block w-2 h-2 rounded-full bg-green" style="box-shadow: 0 0 8px #4CAF75; animation: pulse 2s infinite;"></span>
+          <span class="font-mono text-xs text-bc-muted tracking-wider">Systems operational — accepting new projects</span>
+        </div>
+      </div>
+
+      <!-- Right: mascot -->
+      <div class="flex justify-center lg:justify-end">
+        <div class="relative">
+          <!-- Decorative corner brackets around mascot -->
+          <div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-green opacity-60"></div>
+          <div class="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-green opacity-60"></div>
+          <div class="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-green opacity-60"></div>
+          <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-green opacity-60"></div>
+
+          <BitMascot size={300} />
+
+          <!-- Label below mascot -->
+          <p class="text-center font-mono text-xs text-bc-muted mt-6 tracking-widest">[ BIT — ONLINE ]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom stat strip -->
+    <div class="mt-20 pt-8 border-t border-bc-border grid grid-cols-2 md:grid-cols-4 gap-8">
+      {[
+        { value: '10+', label: 'Projects Delivered' },
+        { value: '5+', label: 'Years Building' },
+        { value: '100%', label: 'Custom Solutions' },
+        { value: '∞', label: 'Coffee Consumed' },
+      ].map(({ value, label }) => (
+        <div>
+          <p class="font-mono text-2xl font-bold text-bc-text mb-1">{value}</p>
+          <p class="font-mono text-xs text-bc-muted tracking-wide uppercase">{label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Bottom fade to next section -->
+  <div
+    class="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+    style="background: linear-gradient(transparent, #141414);"
+  ></div>
+</section>
+
+<style>
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>

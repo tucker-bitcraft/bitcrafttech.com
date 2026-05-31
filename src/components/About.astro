@@ -1,0 +1,106 @@
+---
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="about" class="relative bg-bg-section py-32 clip-angle-both" style="padding-top: calc(5rem + 40px); padding-bottom: calc(5rem + 40px);">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Left: text -->
+      <div>
+        <SectionHeading
+          label="// 03 — ABOUT"
+          title="The Shop"
+        />
+
+        <div class="space-y-5 text-bc-muted leading-relaxed">
+          <p>
+            Bitcraft Tech is an independent software engineering shop built for people who care about how software actually works — not just whether it works.
+          </p>
+          <p>
+            We specialise in the kind of work that demands real engineering: systems-level software, high-reliability platforms, and tools that developers actually want to use. No resume-padding tech choices, no unnecessary complexity.
+          </p>
+          <p>
+            We're small by design. That means every engagement gets senior-level attention, direct communication, and zero layers of project management between you and the code.
+          </p>
+        </div>
+
+        <!-- Values -->
+        <div class="mt-10 space-y-4">
+          {[
+            { label: 'Craft over cargo-cult', desc: 'We choose technology based on the problem, not the trend.' },
+            { label: 'Transparency by default', desc: 'You always know what we\'re building and why.' },
+            { label: 'Boring where it counts', desc: 'Reliable, proven fundamentals. Interesting only where it matters.' },
+          ].map(({ label, desc }) => (
+            <div class="flex gap-4 items-start">
+              <span class="text-green font-mono text-lg leading-none mt-0.5">›</span>
+              <div>
+                <p class="text-bc-text font-semibold text-sm mb-1">{label}</p>
+                <p class="text-bc-muted text-sm">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: decorative + founder card -->
+      <div class="flex flex-col gap-8">
+        <!-- Decorative bracket element -->
+        <div
+          class="relative p-8 border border-bc-border bg-bg-card overflow-hidden"
+          style="border-radius: 2px;"
+        >
+          <!-- Corner accents -->
+          <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-green"></div>
+          <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-green"></div>
+          <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-green"></div>
+          <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-green"></div>
+
+          <p class="font-mono text-xs text-green tracking-widest mb-4">// MISSION STATEMENT</p>
+          <blockquote class="text-bc-text text-lg leading-relaxed font-light italic">
+            "Software should be a force multiplier — not a liability you inherit."
+          </blockquote>
+        </div>
+
+        <!-- Founder / team card -->
+        <div
+          class="p-6 border border-bc-border bg-bg-card card-accent-amber"
+          style="border-radius: 2px;"
+        >
+          <p class="font-mono text-xs text-bc-muted tracking-widest mb-4">// FOUNDER</p>
+          <div class="flex items-start gap-4">
+            <!-- Avatar placeholder -->
+            <div
+              class="w-14 h-14 flex items-center justify-center bg-bg-section border border-bc-border flex-shrink-0 font-mono text-green font-bold text-lg"
+              style="border-radius: 2px;"
+            >
+              TB
+            </div>
+            <div>
+              <p class="text-bc-text font-semibold text-base mb-1">Tucker</p>
+              <p class="font-mono text-xs text-amber tracking-wide mb-3">Founder & Lead Engineer</p>
+              <p class="text-bc-muted text-sm leading-relaxed">
+                Building software from first principles. Equal parts systems engineer, full-stack developer, and compulsive problem-solver.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech stack strip -->
+        <div class="border border-bc-border bg-bg-card p-5" style="border-radius: 2px;">
+          <p class="font-mono text-xs text-bc-muted tracking-widest mb-4">// STACK</p>
+          <div class="flex flex-wrap gap-2">
+            {['Rust', 'C/C++', 'TypeScript', 'Python', 'Go', 'Linux', 'Postgres', 'Kubernetes', 'RTOS', 'AWS'].map((tech) => (
+              <span
+                class="font-mono text-xs text-bc-muted border border-bc-border px-2 py-1 hover:border-green hover:text-green transition-colors"
+                style="border-radius: 2px;"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

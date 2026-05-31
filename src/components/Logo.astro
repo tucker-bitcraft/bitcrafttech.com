@@ -1,0 +1,28 @@
+---
+interface Props {
+  class?: string;
+  height?: number;
+}
+
+const { class: className = '', height = 32 } = Astro.props;
+---
+
+<a href="/" aria-label="Bitcraft Tech home" class:list={['inline-flex items-center', className]}>
+  <img
+    src="/logo.svg"
+    alt="Bitcraft Tech"
+    height={height}
+    style={`height: ${height}px; width: auto;`}
+    class="logo-img"
+    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+  />
+  <!-- Fallback shown when logo.svg is missing -->
+  <span
+    style="display: none;"
+    class="logo-fallback font-mono text-green-hi font-medium tracking-widest text-sm uppercase items-center gap-1"
+  >
+    <span class="text-bc-muted">[</span>
+    <span>BITCRAFT</span>
+    <span class="text-bc-muted">]</span>
+  </span>
+</a>

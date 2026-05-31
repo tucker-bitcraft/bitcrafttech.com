@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  accentColor?: 'green' | 'amber';
+  index?: number;
+}
+
+const { title, description, icon, accentColor = 'green', index = 0 } = Astro.props;
+const accentClass = accentColor === 'amber' ? 'card-accent-amber' : 'card-accent-green';
+const hoverBorder = accentColor === 'amber' ? 'hover:border-amber' : 'hover:border-green';
+const hoverGlow = accentColor === 'amber' ? 'hover:glow-amber' : 'hover:glow-green';
+const iconColor = accentColor === 'amber' ? 'text-amber' : 'text-green';
+const indexLabel = String(index + 1).padStart(2, '0');
+---
+
+<article
+  class:list={[
+    'relative bg-bg-card border border-bc-border p-6 transition-all duration-300 cursor-default group',
+    accentClass,
+    hoverBorder,
+    hoverGlow,
+  ]}
+  style="border-radius: 2px;"
+>
+  <!-- Index label -->
+  <span class="absolute top-4 right-5 font-mono text-xs text-bc-muted opacity-50">{indexLabel}</span>
+
+  <!-- Icon -->
+  <div class:list={['text-3xl mb-5', iconColor]} set:html={icon}></div>
+
+  <h3 class="text-bc-text font-semibold text-lg mb-3 group-hover:text-bc-text transition-colors">
+    {title}
+  </h3>
+  <p class="text-bc-muted text-sm leading-relaxed">
+    {description}
+  </p>
+</article>
