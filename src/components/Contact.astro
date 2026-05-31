@@ -1,0 +1,159 @@
+---
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="contact" class="relative bg-bg-base py-32" style="padding-top: calc(5rem + 40px);">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Left: heading + info -->
+      <div>
+        <SectionHeading
+          label="// 04 — CONTACT"
+          title="Start a Project"
+          subtitle="Have something to build? We'd like to hear about it."
+        />
+
+        <div class="space-y-6 mt-8">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 flex items-center justify-center border border-bc-border bg-bg-card flex-shrink-0 text-green" style="border-radius: 2px;">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 4h12a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5"/><path d="M2 5l7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <p class="font-mono text-xs text-bc-muted tracking-wide mb-1">EMAIL</p>
+              <a href="mailto:tucker@bitcrafttech.com" class="text-bc-text hover:text-green transition-colors text-sm">
+                tucker@bitcrafttech.com
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 flex items-center justify-center border border-bc-border bg-bg-card flex-shrink-0 text-green" style="border-radius: 2px;">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 5v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <p class="font-mono text-xs text-bc-muted tracking-wide mb-1">RESPONSE TIME</p>
+              <p class="text-bc-text text-sm">Within 24 hours on business days</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 flex items-center justify-center border border-bc-border bg-bg-card flex-shrink-0 text-green" style="border-radius: 2px;">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C5.7 2 3 4.7 3 8c0 5 6 10 6 10s6-5 6-10c0-3.3-2.7-6-6-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="8" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div>
+              <p class="font-mono text-xs text-bc-muted tracking-wide mb-1">LOCATION</p>
+              <p class="text-bc-text text-sm">Remote-first. Available globally.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Process note -->
+        <div class="mt-10 p-5 border border-bc-border bg-bg-card" style="border-radius: 2px;">
+          <p class="font-mono text-xs text-green tracking-widest mb-3">// HOW IT WORKS</p>
+          <div class="space-y-2">
+            {[
+              'Tell us what you need to build',
+              'We discuss scope, timeline, and fit',
+              'Proposal and agreement',
+              'We start building',
+            ].map((step, i) => (
+              <div class="flex items-center gap-3">
+                <span class="font-mono text-xs text-bc-muted w-4 flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                <span class="text-bc-muted text-sm">{step}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      <div>
+        <form
+          method="POST"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          class="space-y-5"
+        >
+          <div>
+            <label for="name" class="block font-mono text-xs text-bc-muted tracking-wide mb-2">
+              YOUR NAME <span class="text-green">*</span>
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              placeholder="Jane Smith"
+              class="w-full bg-bg-card border border-bc-border text-bc-text placeholder-bc-muted px-4 py-3 font-sans text-sm focus:outline-none focus:border-green transition-colors"
+              style="border-radius: 2px;"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block font-mono text-xs text-bc-muted tracking-wide mb-2">
+              EMAIL ADDRESS <span class="text-green">*</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="jane@company.com"
+              class="w-full bg-bg-card border border-bc-border text-bc-text placeholder-bc-muted px-4 py-3 font-sans text-sm focus:outline-none focus:border-green transition-colors"
+              style="border-radius: 2px;"
+            />
+          </div>
+
+          <div>
+            <label for="project-type" class="block font-mono text-xs text-bc-muted tracking-wide mb-2">
+              PROJECT TYPE
+            </label>
+            <select
+              id="project-type"
+              name="project-type"
+              class="w-full bg-bg-card border border-bc-border text-bc-text px-4 py-3 font-sans text-sm focus:outline-none focus:border-green transition-colors appearance-none cursor-pointer"
+              style="border-radius: 2px; background-image: url(\"data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7065' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: right 16px center;"
+            >
+              <option value="" disabled selected class="text-bc-muted">Select a category</option>
+              <option value="custom-dev">Custom Software Development</option>
+              <option value="embedded">Systems & Embedded Engineering</option>
+              <option value="platform">Platform & API Architecture</option>
+              <option value="tooling">Developer Tooling & Automation</option>
+              <option value="data">Data Engineering & Pipelines</option>
+              <option value="consulting">Technical Consulting</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block font-mono text-xs text-bc-muted tracking-wide mb-2">
+              TELL US ABOUT YOUR PROJECT <span class="text-green">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows={5}
+              placeholder="Describe what you're building, the problem you're solving, and any relevant constraints..."
+              class="w-full bg-bg-card border border-bc-border text-bc-text placeholder-bc-muted px-4 py-3 font-sans text-sm focus:outline-none focus:border-green transition-colors resize-none"
+              style="border-radius: 2px;"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-green text-bg-base font-semibold font-mono text-sm tracking-wide glow-green hover:glow-green-hi hover:bg-green-hi transition-all duration-200"
+            style="border-radius: 2px;"
+          >
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l5 4-5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+
+          <p class="font-mono text-xs text-bc-muted text-center mt-3">
+            Or email directly: <a href="mailto:tucker@bitcrafttech.com" class="text-green hover:text-green-hi transition-colors">tucker@bitcrafttech.com</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

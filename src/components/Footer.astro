@@ -1,0 +1,71 @@
+---
+import Logo from './Logo.astro';
+
+const year = new Date().getFullYear();
+
+const footerLinks = [
+  { label: 'Services', href: '#services' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<footer class="relative bg-bg-section border-t border-bc-border">
+  <!-- Top accent line -->
+  <div
+    class="absolute top-0 left-0 right-0 h-px"
+    style="background: linear-gradient(90deg, transparent, #3E8B5E 30%, #E8A020 70%, transparent);"
+  ></div>
+
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+      <!-- Logo + tagline -->
+      <div>
+        <Logo height={30} />
+        <p class="mt-4 text-bc-muted text-sm leading-relaxed max-w-xs">
+          Industrial-grade software engineering. Built with precision and purpose.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <p class="font-mono text-xs text-bc-muted tracking-widest mb-4">// NAVIGATION</p>
+        <nav class="space-y-2" aria-label="Footer navigation">
+          {footerLinks.map(({ label, href }) => (
+            <a
+              href={href}
+              class="block font-mono text-sm text-bc-muted hover:text-green transition-colors tracking-wide"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <p class="font-mono text-xs text-bc-muted tracking-widest mb-4">// CONTACT</p>
+        <div class="space-y-2">
+          <a
+            href="mailto:tucker@bitcrafttech.com"
+            class="block font-mono text-sm text-bc-muted hover:text-green transition-colors"
+          >
+            tucker@bitcrafttech.com
+          </a>
+          <p class="font-mono text-xs text-bc-muted">Remote — Available Globally</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="pt-6 border-t border-bc-border flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="font-mono text-xs text-bc-muted tracking-wide">
+        [ BITCRAFT TECH — EST. 2024 ]
+      </p>
+      <p class="font-mono text-xs text-bc-muted">
+        &copy; {year} Bitcraft Technologies. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
