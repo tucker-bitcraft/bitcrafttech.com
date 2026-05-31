@@ -13,20 +13,20 @@ interface ProjectItem {
 
 const projects: ProjectItem[] = [
   {
-    title: 'Project Alpha',
-    description: 'A placeholder for your featured project. Replace this with a real description of what you built, the problem it solved, and the impact it had.',
-    tags: ['Rust', 'Embedded', 'Linux'],
+    title: 'Echo',
+    description: 'An AI Engine for persistant entities on a wide range of devices',
+    tags: ['Python', 'Embedded', 'Linux'],
+    status: 'wip',
+  },
+  {
+    title: 'Medulla',
+    description: 'Plug and play port-socket system, allowing a unified interface to execute commands',
+    tags: ['python', 'PostgreSQL', 'Kubernetes'],
     status: 'live',
   },
   {
-    title: 'Project Beta',
-    description: 'Another placeholder project. Describe the technology choices, the scale it operates at, and what makes it technically interesting.',
-    tags: ['TypeScript', 'PostgreSQL', 'Kubernetes'],
-    status: 'live',
-  },
-  {
-    title: 'Project Gamma',
-    description: 'Currently in active development. Update this with your current work-in-progress project and its expected completion.',
+    title: 'Bit',
+    description: 'A 4.5 foot robot comanion',
     tags: ['Python', 'ML Pipeline', 'Apache Kafka'],
     status: 'wip',
   },
@@ -44,7 +44,7 @@ const projects: ProjectItem[] = [
     <SectionHeading
       label="// 02 — PROJECTS"
       title="Selected Work"
-      subtitle="A sample of things we've built. Replace the placeholders with your real projects."
+      subtitle="A sample of things we've built."
     />
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">

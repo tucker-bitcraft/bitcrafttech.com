@@ -1,8 +1,56 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="32" height="32" fill="#0D0D0D"/>
-  <rect x="4" y="4" width="11" height="11" rx="1" fill="#333333"/>
-  <rect x="17" y="4" width="11" height="11" rx="1" fill="#3E8B5E"/>
-  <rect x="4" y="17" width="11" height="11" rx="1" fill="#3E8B5E"/>
-  <rect x="17" y="17" width="11" height="11" rx="1" fill="#333333"/>
-  <circle cx="20" cy="20" r="4" fill="#E8A020"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Adobe Illustrator 24.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 66.5 70" style="enable-background:new 0 0 66.5 70;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#006837;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{fill:#CCA049;}
+	.st4{fill:#CCA049;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st5{fill:#005E39;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st6{fill:#28242B;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st7{fill:none;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st8{fill:#005E39;}
+	.st9{fill:#28242B;}
+	.st10{fill:#005E39;stroke:#FFFFFF;stroke-width:1.5;stroke-miterlimit:10;}
+	.st11{fill:#455E37;}
+	.st12{fill:#28242B;stroke:#FFFFFF;stroke-width:1.5;stroke-miterlimit:10;}
+	.st13{fill:#006837;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st14{fill:#CCA049;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st15{fill:#009245;}
+	.st16{fill:#46693F;}
+</style>
+<g id="BIT">
+</g>
+<g id="Layer_4">
+	<g>
+		<path class="st10" d="M54.75,35.25h-12c-5.25,0-9.5-4.25-9.5-9.5v-14c0-5.25,4.25-9.5,9.5-9.5h12c5.25,0,9.5,4.25,9.5,9.5v14
+			C64.25,31,60,35.25,54.75,35.25z"/>
+		<path class="st10" d="M23.75,68.25h-12c-5.25,0-9.5-4.25-9.5-9.5v-14c0-5.25,4.25-9.5,9.5-9.5h12c5.25,0,9.5,4.25,9.5,9.5v14
+			C33.25,64,29,68.25,23.75,68.25z"/>
+		<g>
+			<g>
+				<path class="st3" d="M27.25,51.5c-5.1,0-9.25-4.15-9.25-9.25v-14c0-5.1,4.15-9.25,9.25-9.25h12c5.1,0,9.25,4.15,9.25,9.25v14
+					c0,5.1-4.15,9.25-9.25,9.25H27.25z"/>
+				<path class="st16" d="M39.25,19.25c4.96,0,9,4.04,9,9v14c0,4.96-4.04,9-9,9h-12c-4.96,0-9-4.04-9-9v-14c0-4.96,4.04-9,9-9H39.25
+					 M39.25,18.75h-12c-5.25,0-9.5,4.25-9.5,9.5v14c0,5.25,4.25,9.5,9.5,9.5h12c5.25,0,9.5-4.25,9.5-9.5v-14
+					C48.75,23,44.5,18.75,39.25,18.75L39.25,18.75z"/>
+			</g>
+			<g>
+				<path class="st3" d="M27.25,51.5c-5.1,0-9.25-4.15-9.25-9.25v-14c0-5.1,4.15-9.25,9.25-9.25h12c5.1,0,9.25,4.15,9.25,9.25v14
+					c0,5.1-4.15,9.25-9.25,9.25H27.25z"/>
+				<path class="st16" d="M39.25,19.25c4.96,0,9,4.04,9,9v14c0,4.96-4.04,9-9,9h-12c-4.96,0-9-4.04-9-9v-14c0-4.96,4.04-9,9-9H39.25
+					 M39.25,18.75h-12c-5.25,0-9.5,4.25-9.5,9.5v14c0,5.25,4.25,9.5,9.5,9.5h12c5.25,0,9.5-4.25,9.5-9.5v-14
+					C48.75,23,44.5,18.75,39.25,18.75L39.25,18.75z"/>
+			</g>
+		</g>
+		<path class="st12" d="M23.75,35.25h-12c-5.25,0-9.5-4.25-9.5-9.5v-14c0-5.25,4.25-9.5,9.5-9.5h12c5.25,0,9.5,4.25,9.5,9.5v14
+			C33.25,31,29,35.25,23.75,35.25z"/>
+		<path class="st12" d="M54.75,68.25h-12c-5.25,0-9.5-4.25-9.5-9.5v-14c0-5.25,4.25-9.5,9.5-9.5h12c5.25,0,9.5,4.25,9.5,9.5v14
+			C64.25,64,60,68.25,54.75,68.25z"/>
+	</g>
+</g>
+<g id="BitCraft">
+</g>
 </svg>
