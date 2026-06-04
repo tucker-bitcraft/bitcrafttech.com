@@ -2,41 +2,7 @@
 import SectionHeading from './SectionHeading.astro';
 import ProjectCard from './ProjectCard.astro';
 
-interface ProjectItem {
-  title: string;
-  description: string;
-  tags: string[];
-  link?: string;
-  image?: string;
-  status?: 'live' | 'wip' | 'archived';
-}
-
-const projects: ProjectItem[] = [
-  {
-    title: 'Echo',
-    description: 'An AI Engine for persistant entities on a wide range of devices',
-    tags: ['Python', 'Embedded', 'Linux'],
-    status: 'wip',
-  },
-  {
-    title: 'Medulla',
-    description: 'Plug and play port-socket system, allowing a unified interface to execute commands',
-    tags: ['python', 'PostgreSQL', 'Kubernetes'],
-    status: 'live',
-  },
-  {
-    title: 'Bit',
-    description: 'A 4.5 foot robot comanion',
-    tags: ['Python', 'ML Pipeline', 'Apache Kafka'],
-    status: 'wip',
-  },
-  {
-    title: 'Project Delta',
-    description: 'An older project showing your range. Archived but a demonstration of prior work and technical breadth.',
-    tags: ['C++', 'RTOS', 'CAN Bus'],
-    status: 'archived',
-  },
-];
+import {projectList} from "../data/projects"
 ---
 
 <section id="projects" class="relative bg-bg-base py-32" style="padding-top: calc(5rem + 40px);">
@@ -48,7 +14,7 @@ const projects: ProjectItem[] = [
     />
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      {projects.map((project) => (
+      {projectList.slice(0,3).map((project) => (
         <ProjectCard {...project} />
       ))}
     </div>
@@ -58,12 +24,10 @@ const projects: ProjectItem[] = [
         [ More projects available on request ]
       </p>
       <a
-        href="https://github.com"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/projects"
         class="inline-flex items-center gap-2 font-mono text-xs text-green hover:text-green-hi transition-colors tracking-wide"
       >
-        View on GitHub
+        Curious? Check it out
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
