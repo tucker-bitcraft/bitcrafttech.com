@@ -3,18 +3,23 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      // Colors resolve to CSS variables so the whole palette can be swapped
+      // between dark (default) and light themes. Actual values live in
+      // src/styles/global.css under :root and :root[data-theme="light"].
+      // NOTE: no opacity modifiers (e.g. bg-green/20) are used on these tokens,
+      // which keeps the bare var() form safe.
       colors: {
-        'bg-base':    '#0D0D0D',
-        'bg-section': '#141414',
-        'bg-card':    '#1E1E1E',
-        'bc-border':  '#2A2A2A',
-        'bc-border-hi': '#333333',
-        'green':      '#3E8B5E',
-        'green-hi':   '#4CAF75',
-        'amber':      '#E8A020',
-        'orange':     '#E55C1A',
-        'bc-text':    '#E8E0D0',
-        'bc-muted':   '#7A7065',
+        'bg-base':      'var(--color-bg-base)',
+        'bg-section':   'var(--color-bg-section)',
+        'bg-card':      'var(--color-bg-card)',
+        'bc-border':    'var(--color-bc-border)',
+        'bc-border-hi': 'var(--color-bc-border-hi)',
+        'green':        'var(--color-green)',
+        'green-hi':     'var(--color-green-hi)',
+        'amber':        'var(--color-amber)',
+        'orange':       'var(--color-orange)',
+        'bc-text':      'var(--color-bc-text)',
+        'bc-muted':     'var(--color-bc-muted)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

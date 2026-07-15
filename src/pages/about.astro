@@ -1,0 +1,265 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/Section.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+
+// What I believe — the honest, anti-hype stance.
+const beliefs = [
+  {
+    label: 'I talk straight',
+    desc: "No moon-and-stars promises. I tell you what a project actually needs, what it doesn't, and what it'll cost; before you commit a dollar.",
+  },
+  {
+    label: 'The right tool, not the trendy one',
+    desc: 'AI is great and I use it every day, but a lot of the time all you need is a simple algorithm done well. I pick what solves your problem, not what looks good in a pitch.',
+  },
+  {
+    label: 'You talk to the person building it',
+    desc: 'No layers of project managers between you and the code. When you email Bitcraft, you get me.',
+  },
+  {
+    label: 'Boring where it counts',
+    desc: 'Reliable, proven fundamentals under the hood. I save the clever stuff for the places where it actually matters; like a UX you\'re proud to show your customers.',
+  },
+];
+
+const stack = ['C / C++', 'Rust', 'Python', 'TypeScript', 'Go', 'Embedded / RTOS', 'Linux', 'Postgres', 'Robotics', 'AWS'];
+---
+
+<BaseLayout
+  title="About - Bitcraft Technologies"
+  description="Bitcraft is Tucker; a Mesa-based software engineer building honest websites and custom software for East Valley businesses. Straight talk, the right tool for the job, and no layers between you and the person writing the code."
+>
+  <main>
+    <!-- ─────────────────────────────  PAGE HEADER  ───────────────────────────── -->
+    <section class="relative overflow-hidden bg-bg-base">
+      <div
+        class="absolute top-0 left-0 right-0 h-px"
+        style="background: linear-gradient(90deg, transparent, #3E8B5E, transparent);"
+      ></div>
+      <div
+        class="absolute inset-0 opacity-40"
+        style="background-image: linear-gradient(rgba(62,139,94,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(62,139,94,0.05) 1px, transparent 1px); background-size: 64px 64px;"
+      ></div>
+
+      <div class="relative max-w-7xl mx-auto px-6 pt-24 pb-16">
+        <p class="font-mono text-green text-xs tracking-[0.25em] uppercase mb-6">
+          // ABOUT
+        </p>
+        <h1 class="text-4xl md:text-6xl font-bold leading-[1.05] text-bc-text mb-6 max-w-3xl">
+          A software shop that<br />
+          <span class="text-green text-glow-green">talks straight.</span>
+        </h1>
+        <p class="text-bc-muted text-lg md:text-xl leading-relaxed max-w-2xl">
+          Bitcraft is me; Tucker. A software engineer in Mesa building the websites
+          and tools that businesses around the East Valley actually rely on. No sales
+          team, no hype, no mystery invoices. Just work done right by the person who
+          answers your email.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  THE STORY  ───────────────────────────── -->
+    <section class="relative bg-bg-section clip-angle-both" style="padding-top: calc(5rem + 40px); padding-bottom: calc(5rem + 40px);">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          <!-- Left: the story -->
+          <div>
+            <SectionHeading label="// 01 THE STORY" title="Why Bitcraft Exists" />
+
+            <div class="space-y-5 text-bc-muted leading-relaxed">
+              <p>
+                I spent years in the corporate world, writing software, working in
+                robotics, and running IT for a contact center that supported customer
+                service for big-name brands. I learned a lot. I also learned that
+                it's gotten genuinely hard to tell what's <span class="text-bc-text">true</span>
+                from what's <span class="text-bc-text">PR</span>.
+              </p>
+              <p>
+                What wore me down wasn't the work, it was the layers. Layers of
+                management between the people with the problem and the people who could
+                fix it. And a constant pull to chase whatever was hyped that quarter,
+                whether or not it was what the customer actually needed.
+              </p>
+              <p>
+                I'm not a corporate-minded person. I wanted room for my own ideas and
+                a chance to point my skills at the people right here in my area. For local
+                businesses that deserve software done properly, from someone they can
+                actually reach. So I started Bitcraft.
+              </p>
+              <p class="text-bc-text">
+                Now it's just me and the work. That's the whole point.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: founder + name story + stack -->
+          <div class="flex flex-col gap-8">
+            <!-- Mission -->
+            <div class="relative p-8 border border-bc-border bg-bg-card overflow-hidden" style="border-radius: 5px;">
+              <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-green"></div>
+              <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-green"></div>
+              <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-green"></div>
+              <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-green"></div>
+
+              <p class="font-mono text-xs text-green tracking-widest mb-4">// MISSION</p>
+              <blockquote class="text-bc-text text-lg leading-relaxed font-light italic">
+                "Software should be a force multiplier. Not a liability you inherit."
+              </blockquote>
+            </div>
+
+            <!-- Founder card -->
+            <div class="p-6 border border-bc-border bg-bg-card card-accent-amber" style="border-radius: 5px;">
+              <p class="font-mono text-xs text-bc-muted tracking-widest mb-4">// WHO YOU'RE TALKING TO</p>
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-14 h-14 flex items-center justify-center bg-bg-section border border-bc-border flex-shrink-0 font-mono text-green font-bold text-lg"
+                  style="border-radius: 5px;"
+                >
+                  T
+                </div>
+                <div>
+                  <p class="text-bc-text font-semibold text-base mb-1">Tucker</p>
+                  <p class="font-mono text-xs text-amber tracking-wide mb-3">Founder &amp; Engineer</p>
+                  <p class="text-bc-muted text-sm leading-relaxed">
+                    Software and systems engineer. Happiest deep in backend and embedded
+                    work, but just as invested in a clean, beautiful UX. Runs on curiosity,
+                    first principles, and an unreasonable amount of coffee.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stack -->
+            <div class="border border-bc-border bg-bg-card p-5" style="border-radius: 5px;">
+              <p class="font-mono text-xs text-bc-muted tracking-widest mb-4">// STACK</p>
+              <div class="flex flex-wrap gap-2">
+                {stack.map((tech) => (
+                  <span
+                    class="font-mono text-xs text-bc-muted border border-bc-border px-2 py-1 hover:border-green hover:text-green transition-colors"
+                    style="border-radius: 5px;"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  WHAT I BELIEVE  ───────────────────────────── -->
+    <Section>
+      <SectionHeading
+        label="// 02 HOW I WORK"
+        title="What You Can Count On"
+        subtitle="A short list, and I actually mean it. This is the whole reason Bitcraft exists."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {beliefs.map((belief, i) => (
+          <div class="relative bg-bg-card border border-bc-border card-accent-green p-6 hover:border-green hover:glow-green transition-all duration-300" style="border-radius: 5px;">
+            <span class="absolute top-4 right-5 font-mono text-xs text-bc-muted opacity-50">{String(i + 1).padStart(2, '0')}</span>
+            <div class="flex items-start gap-3">
+              <span class="text-green font-mono text-lg leading-none mt-0.5">›</span>
+              <div>
+                <p class="text-bc-text font-semibold text-base mb-2">{belief.label}</p>
+                <p class="text-bc-muted text-sm leading-relaxed">{belief.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+
+    <!-- ─────────────────────────────  THE NAME / BIT  ───────────────────────────── -->
+    <section class="relative bg-bg-section clip-angle-both" style="padding-top: calc(5rem + 40px); padding-bottom: calc(5rem + 40px);">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <SectionHeading label="// 03 THE NAME" title="Why 'Bitcraft'" />
+            <div class="space-y-5 text-bc-muted leading-relaxed">
+              <p>
+                A <span class="text-green font-mono">bit</span> is the smallest unit in
+                computing. Just a single one or zero. Everything you've ever done on a screen
+                is, underneath it all, just an enormous pile of them arranged the right way.
+              </p>
+              <p>
+                Learning to arrange those ones and zeros, to bend the smallest pieces into
+                something genuinely useful, is what pulled me into software in the first
+                place. That's the craft. That's Bitcraft.
+              </p>
+              <p>
+                And <span class="text-bc-text">Bit</span>, the little character you'll see
+                around the site? That's the mascot. Consider it the friendly face on all
+                those ones and zeros.
+              </p>
+            </div>
+          </div>
+
+          <!-- Binary flourish -->
+          <div class="relative p-10 border border-bc-border bg-bg-card overflow-hidden" style="border-radius: 8px;">
+            <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-amber"></div>
+            <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-amber"></div>
+            <p class="font-mono text-xs text-amber tracking-widest mb-5">// 01100010 01101001 01110100</p>
+            <p class="font-mono text-2xl md:text-3xl text-bc-text leading-relaxed">
+              <span class="text-green">1</span>0<span class="text-green">1</span>1
+              0<span class="text-green">1</span>0<span class="text-green">1</span>
+              <span class="text-bc-muted">·</span>
+              craft<span class="text-green">()</span>
+            </p>
+            <p class="text-bc-muted text-sm mt-5">The smallest pieces, arranged with care.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  CTA  ───────────────────────────── -->
+    <section class="relative bg-bg-base" style="padding-top: calc(5rem + 40px); padding-bottom: 6rem;">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="relative overflow-hidden bg-bg-card border border-green glow-green px-8 py-14 md:px-16 md:py-16 text-center"
+          style="border-radius: 8px;"
+        >
+          <div
+            class="absolute inset-0 opacity-30 pointer-events-none"
+            style="background-image: linear-gradient(rgba(62,139,94,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(62,139,94,0.06) 1px, transparent 1px); background-size: 40px 40px;"
+          ></div>
+
+          <div class="relative">
+            <p class="font-mono text-green text-xs tracking-[0.25em] uppercase mb-5">
+              // LET'S TALK
+            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-bc-text mb-4">
+              Finally, someone who talks straight.
+            </h2>
+            <p class="text-bc-muted text-lg leading-relaxed max-w-xl mx-auto mb-10">
+              Tell me what you're trying to build or fix. You'll get an honest answer,
+              a fixed quote, and a free mockup before you commit to anything. That's it.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+              <a
+                href="/contact"
+                class="inline-flex items-center gap-2 px-7 py-3.5 bg-green text-bg-base font-semibold font-mono text-sm tracking-wide glow-green hover:glow-green-hi hover:bg-green-hi transition-all duration-200"
+                style="border-radius: 5px;"
+              >
+                Start a conversation
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a
+                href="/services"
+                class="inline-flex items-center gap-2 px-7 py-3.5 border border-bc-border text-bc-text font-mono text-sm tracking-wide hover:border-green hover:text-green transition-all duration-200"
+                style="border-radius: 5px;"
+              >
+                See what I build
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

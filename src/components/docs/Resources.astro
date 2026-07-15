@@ -1,0 +1,67 @@
+---
+// "Before you start" + downloadable code / repo panel. Renders nothing when
+// the page has no prerequisites, downloads, or repo. Safe to always include.
+import { urlOf, type Entry } from '@/lib/docs';
+
+interface Props {
+  entry: Entry;
+  /** Resolved prerequisite entries (already looked up by the page). */
+  prereqEntries: Entry[];
+}
+const { entry, prereqEntries } = Astro.props;
+const { downloads, githubRepo } = entry.data;
+
+const hasPrereqs = prereqEntries.length > 0;
+const hasCode = downloads.length > 0 || !!githubRepo;
+---
+
+{(hasPrereqs || hasCode) && (
+  <div class="not-prose grid gap-4 md:grid-cols-2 my-8">
+    {hasPrereqs && (
+      <section class="bg-bg-card border border-bc-border card-accent-green p-5" style="border-radius: 8px;">
+        <p class="font-mono text-xs text-green tracking-[0.15em] uppercase mb-3">// REVIEW FIRST</p>
+        <ul class="space-y-2">
+          {prereqEntries.map((p) => (
+            <li>
+              <a href={urlOf(p)} class="group flex items-start gap-2 text-bc-text text-sm hover:text-green transition-colors">
+                <svg class="mt-1 flex-shrink-0 text-green" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h10M8 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>{p.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {hasCode && (
+      <section class="bg-bg-card border border-bc-border card-accent-amber p-5" style="border-radius: 8px;">
+        <p class="font-mono text-xs text-amber tracking-[0.15em] uppercase mb-3">// GET THE CODE</p>
+        <div class="flex flex-col gap-2">
+          {downloads.map((d) => (
+            <a
+              href={d.file}
+              download
+              class="group flex items-center justify-between gap-2 font-mono text-sm text-bc-text bg-bg-section border border-bc-border hover:border-amber hover:text-amber transition-colors px-3 py-2"
+              style="border-radius: 5px;"
+            >
+              <span class="truncate">{d.label}</span>
+              <svg class="flex-shrink-0" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8M8 10l-3-3M8 10l3-3M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          ))}
+          {githubRepo && (
+            <a
+              href={githubRepo}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-between gap-2 font-mono text-sm text-bc-text bg-bg-section border border-bc-border hover:border-amber hover:text-amber transition-colors px-3 py-2 mt-1"
+              style="border-radius: 5px;"
+            >
+              <span>View repository</span>
+              <svg class="flex-shrink-0" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H3v11h10v-3M9 2h5v5M14 2L7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          )}
+        </div>
+      </section>
+    )}
+  </div>
+)}

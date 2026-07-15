@@ -2,16 +2,18 @@
 import Logo from './Logo.astro';
 
 const navLinks = [
-  { label: 'Services', href: '/#services' },
-  { label: 'Projects', href: '/#projects' },
-  { label: 'About', href: '/#about' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Services', href: '/services' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Lab',      href: '/lab' },
+  { label: 'About',    href: '/about' },
+  { label: 'Pricing',  href: '/pricing' },
+  // { label: 'Bits & Bytes',     href: '/bitsnbytes'},
 ];
 ---
 
 <header
   class="sticky top-0 z-50 border-b border-bc-border"
-  style="background-color: rgba(13,13,13,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"
+  style="background-color: var(--header-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"
 >
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
     <Logo height={50} />
@@ -27,16 +29,19 @@ const navLinks = [
         </a>
       ))}
       <a
-        href="#contact"
+        href="/contact"
         class="font-mono text-sm px-4 py-2 border border-green text-green hover:bg-green hover:text-bg-base transition-all duration-200 tracking-wide"
         style="border-radius: 2px;"
       >
         Get In Touch
       </a>
+      
     </nav>
 
-    <!-- Mobile nav: pure HTML details/summary, zero JS -->
-    <details class="md:hidden group">
+    <!-- Mobile: theme toggle + menu -->
+    <div class="flex items-center gap-2 md:hidden">
+    
+    <details class="group">
       <summary
         class="list-none cursor-pointer p-2 text-bc-muted hover:text-bc-text transition-colors"
         aria-label="Toggle navigation"
@@ -55,7 +60,7 @@ const navLinks = [
       </summary>
       <nav
         class="absolute top-16 left-0 right-0 border-b border-bc-border px-6 py-4 flex flex-col gap-4"
-        style="background-color: rgba(13,13,13,0.97); backdrop-filter: blur(12px);"
+        style="background-color: var(--header-bg-solid); backdrop-filter: blur(12px);"
         aria-label="Mobile navigation"
       >
         {navLinks.map(({ label, href }) => (
@@ -67,7 +72,7 @@ const navLinks = [
           </a>
         ))}
         <a
-          href="#contact"
+          href="/contact"
           class="font-mono text-sm px-4 py-2 border border-green text-green text-center mt-2 hover:bg-green hover:text-bg-base transition-all"
           style="border-radius: 2px;"
         >
@@ -75,5 +80,6 @@ const navLinks = [
         </a>
       </nav>
     </details>
+    </div>
   </div>
 </header>

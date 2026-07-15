@@ -25,38 +25,39 @@ import BitMascot from './BitMascot.astro';
         </p>
 
         <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold leading-[1.05] text-bc-text mb-6">
-          We Build<br />
-          <span class="text-green text-glow-green">Industrial</span><br />
-          Software.
+          Software & websites,<br />
+          <span class="text-green text-glow-green">built local.</span><br />
+          Built to last.
         </h1>
 
         <p class="text-bc-muted text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
-          Precision-crafted solutions for complex problems.
-          From embedded systems to enterprise platforms — built to last.
+          Bitcraft Technologies builds the websites, booking tools, 
+          and custom software that Phoenix and East Valley businesses rely on
+          engineered properly, supported directly, priced without surprises.
         </p>
 
         <div class="flex flex-wrap gap-4">
           <a
-            href="#services"
+            href="#contact"
             class="inline-flex items-center gap-2 px-6 py-3 bg-green text-bg-base font-semibold font-mono text-sm tracking-wide glow-green hover:glow-green-hi hover:bg-green-hi transition-all duration-200"
-            style="border-radius: 2px;"
+            style="border-radius: 5px;"
           >
-            See Our Work
+            Get a free mockup
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a
-            href="#contact"
+            href="#projects"
             class="inline-flex items-center gap-2 px-6 py-3 border border-bc-border text-bc-text font-mono text-sm tracking-wide hover:border-green hover:text-green transition-all duration-200"
-            style="border-radius: 2px;"
+            style="border-radius: 5px;"
           >
-            Get In Touch
+            See our projects
           </a>
         </div>
 
         <!-- Status indicator -->
         <div class="mt-14 flex items-center gap-3">
           <span class="inline-block w-2 h-2 rounded-full bg-green" style="box-shadow: 0 0 8px #4CAF75; animation: pulse 2s infinite;"></span>
-          <span class="font-mono text-xs text-bc-muted tracking-wider">Systems operational — accepting new projects</span>
+          <span class="font-mono text-xs text-bc-muted tracking-wider">Systems operational. Accepting new projects.</span>
         </div>
       </div>
 
@@ -72,7 +73,7 @@ import BitMascot from './BitMascot.astro';
           <BitMascot size={385} />
 
           <!-- Label below mascot -->
-          <p class="text-center font-mono text-xs text-bc-muted mt-6 tracking-widest">[ BIT — ONLINE ]</p>
+          <p class="text-center font-mono text-xs text-bc-muted mt-6 tracking-widest">[ BIT > ONLINE ]</p>
         </div>
       </div>
     </div>
@@ -80,8 +81,8 @@ import BitMascot from './BitMascot.astro';
     <!-- Bottom stat strip -->
     <div class="mt-20 pt-8 border-t border-bc-border grid grid-cols-2 md:grid-cols-4 gap-8">
       {[
-        { value: '10+', label: 'Projects Delivered' },
-        { value: '5+', label: 'Years Building' },
+        { value: 'Local · Mesa, AZ', label: 'You talk to the developer' },
+        { value: 'Free mockup', label: 'no obligation' },
         { value: '100%', label: 'Custom Solutions' },
         { value: '∞', label: 'Coffee Consumed' },
       ].map(({ value, label }) => (
@@ -96,7 +97,7 @@ import BitMascot from './BitMascot.astro';
   <!-- Bottom fade to next section -->
   <div
     class="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-    style="background: linear-gradient(transparent, #141414);"
+    style="background: linear-gradient(transparent, var(--color-bg-base));"
   ></div>
 </section>
 

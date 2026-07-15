@@ -1,0 +1,71 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Message Received - Bitcraft Tech"
+  description="Thanks for reaching out. Your message is in! We'll get back to you within one business day."
+>
+  <main class="relative bg-bg-base">
+    <section class="max-w-3xl mx-auto px-6 py-32 text-center" style="padding-top: calc(5rem + 60px);">
+      <!-- Success mark -->
+      <div
+        class="w-16 h-16 mx-auto mb-8 flex items-center justify-center border border-green bg-bg-card text-green glow-green"
+        style="border-radius: 8px;"
+      >
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+          <path d="M7 15.5l5 5L23 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <p class="font-mono text-green text-xs tracking-[0.2em] uppercase mb-4">// MESSAGE RECEIVED</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-bc-text leading-tight mb-5">
+        <span class="text-bc-muted font-light">[</span> Thanks! We've got it <span class="text-bc-muted font-light">]</span>
+      </h1>
+      <p class="text-bc-muted text-lg leading-relaxed max-w-xl mx-auto">
+        Your message is in and we'll be in touch within one business day. Keep an eye
+        on your inbox and check your spam folder just in case our reply lands there.
+      </p>
+
+      <!-- What happens next -->
+      <div class="mt-12 p-6 border border-bc-border bg-bg-card text-left max-w-md mx-auto" style="border-radius: 8px;">
+        <p class="font-mono text-xs text-green tracking-widest uppercase mb-4">// WHAT HAPPENS NEXT</p>
+        <div class="space-y-3">
+          {[
+            'We read every message personally.',
+            'We reply within one business day.',
+            'We line up a quick call to talk scope and fit.',
+          ].map((step, i) => (
+            <div class="flex items-start gap-3">
+              <span class="font-mono text-xs text-bc-muted w-5 flex-shrink-0 mt-0.5">{String(i + 1).padStart(2, '0')}</span>
+              <span class="text-bc-text text-sm">{step}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-green text-bg-base font-semibold font-mono text-sm tracking-wide glow-green hover:glow-green-hi hover:bg-green-hi transition-all duration-200"
+          style="border-radius: 2px;"
+        >
+          Back to Home
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l5 4-5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a
+          href="/bitsnbytes"
+          class="inline-flex items-center gap-2 px-6 py-3 border border-bc-border text-bc-text font-mono text-sm tracking-wide hover:border-green hover:text-green transition-all duration-200"
+          style="border-radius: 2px;"
+        >
+          Explore Bits &amp; Bytes
+        </a>
+      </div>
+
+      <p class="font-mono text-xs text-bc-muted mt-10">
+        Need us sooner? Email <a href="mailto:hello@bitcrafttech.com" class="text-green hover:text-green-hi transition-colors">hello@bitcrafttech.com</a>
+      </p>
+    </section>
+  </main>
+</BaseLayout>

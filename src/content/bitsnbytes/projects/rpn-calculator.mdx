@@ -1,0 +1,147 @@
+---
+title: RPN Calculator
+description: Build a calculator that evaluates Reverse Polish Notation with a stack — a complete, runnable project in about forty lines of Python.
+order: 1
+group: Beginner Projects
+difficulty: intermediate
+tags: ['python', 'parsing', 'stacks', 'cli']
+prerequisites: ['components/stacks-and-queues']
+downloads:
+  - { file: '/bitsnbytes/rpn-calculator/rpn.py', label: 'rpn.py' }
+  - { file: '/bitsnbytes/rpn-calculator/test_rpn.py', label: 'test_rpn.py' }
+  - { file: '/bitsnbytes/rpn-calculator/README.md', label: 'README.md' }
+updated: 2026-07-14
+---
+
+import Callout from '@/components/docs/Callout.astro';
+
+## What you're building
+
+A **Reverse Polish Notation** (RPN) calculator: a program that evaluates math
+expressions written with the operator *after* its operands.
+
+```text
+Infix (what you learned in school):   (3 + 4) * 5
+RPN  (what we're evaluating):          3 4 + 5 *      ->  35
+```
+
+RPN looks strange for about five minutes, then it clicks — and it has a real
+payoff: **no parentheses, and no operator-precedence rules to implement.** That's
+why calculators, PostScript, and the JVM all use stack-based evaluation under the
+hood. By the end you'll have a working command-line tool, a REPL, and a test
+suite.
+
+<Callout type="note" title="Before you start">
+This project *is* the payoff for [Stacks & Queues](/bitsnbytes/components/stacks-and-queues).
+If "push" and "pop" don't feel automatic yet, read that first — the whole
+algorithm is one stack and a loop.
+</Callout>
+
+## The core idea
+
+Walk the tokens left to right, carrying a stack:
+
+1. **See a number?** Push it onto the stack.
+2. **See an operator?** Pop the top two numbers, apply the operator, push the result back.
+3. **At the end**, exactly one value remains — that's your answer.
+
+Let's trace `3 4 + 5 *` one token at a time:
+
+| Token | Action | Stack after |
+|---|---|---|
+| `3` | push 3 | `[3]` |
+| `4` | push 4 | `[3, 4]` |
+| `+` | pop 4 and 3, push 3+4 | `[7]` |
+| `5` | push 5 | `[7, 5]` |
+| `*` | pop 5 and 7, push 7×5 | `[35]` |
+
+One value left: **35**. That table *is* the program.
+
+<Callout type="warning" title="Watch the operand order">
+For `-` and `/`, order matters. The **first value you pop is the right operand.**
+So for `10 3 -` you pop `3` (right), then `10` (left), and compute `10 - 3 = 7`.
+Get this backwards and addition still works, which hides the bug until subtraction
+gives you nonsense.
+</Callout>
+
+## Step 1 — evaluate one expression
+
+Start with the heart of it. A dictionary maps each operator symbol to a function,
+so adding a new operator later is a one-line change:
+
+```python
+import operator
+
+OPERATORS = {
+    "+": operator.add,
+    "-": operator.sub,
+    "*": operator.mul,
+    "/": operator.truediv,
+}
+
+def evaluate(expression):
+    stack = []
+    for token in expression.split():
+        if token in OPERATORS:
+            right = stack.pop()
+            left = stack.pop()
+            stack.append(OPERATORS[token](left, right))
+        else:
+            stack.append(float(token))
+    return stack[0]
+```
+
+That's a working calculator. `evaluate("3 4 + 5 *")` returns `35.0`. Everything
+from here is about making it *robust*.
+
+## Step 2 — handle bad input
+
+Real input is messy. Three things can go wrong, and each deserves a clear error
+rather than a confusing crash:
+
+- An operator with **fewer than two operands** on the stack (`3 +`).
+- An **unrecognized token** (`3 x +`).
+- **More than one value left** at the end (`1 2`), meaning the expression was incomplete.
+
+The [full `rpn.py`](/bitsnbytes/rpn-calculator/rpn.py) wraps these in a small
+`RPNError` so the CLI can print a friendly message and exit cleanly. Grab it from
+the **Get the code** panel above.
+
+## Step 3 — a CLI and a REPL
+
+A calculator you can't run isn't much fun. The finished version does both:
+
+```bash
+# One-shot: pass the expression as an argument
+python rpn.py "20 4 / 2 -"      # -> 3.0
+
+# Interactive: run with no arguments for a REPL
+python rpn.py
+rpn> 3 4 +
+7.0
+```
+
+## Step 4 — prove it works
+
+Download `test_rpn.py` and run it. It covers the happy path *and* every error
+case from Step 2 — the cases that are easy to break when you refactor:
+
+```bash
+python -m pytest test_rpn.py    # with pytest
+python test_rpn.py              # or the built-in fallback runner
+```
+
+## Extend it
+
+Once the tests pass, make it yours:
+
+- Add `^` for exponentiation (the download already includes it — try removing it and adding it back).
+- Support unary operators like `neg` or `sqrt`.
+- Add a `d` command that duplicates the top of the stack, and `swap` that exchanges the top two — now you have the beginnings of a Forth.
+- Write a converter that turns ordinary infix input into RPN (look up the *shunting-yard algorithm* — it uses a stack too).
+
+<Callout type="tip" title="You just used a stack for real">
+That's the pattern behind every expression evaluator, from your phone's
+calculator to a language interpreter. The next time you see "the parser uses a
+stack," you'll know exactly what that means.
+</Callout>

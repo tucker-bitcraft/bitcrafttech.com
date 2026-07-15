@@ -1,0 +1,96 @@
+---
+import type { PricingTier } from '@/data/pricing';
+
+type Props = PricingTier & { index?: number };
+
+const {
+  name,
+  tagline,
+  price,
+  priceNote,
+  featured = false,
+  accentColor = 'green',
+  features,
+  ctaLabel,
+  ctaHref,
+  index = 0,
+} = Astro.props;
+
+const accentClass = accentColor === 'amber' ? 'card-accent-amber' : 'card-accent-green';
+const hoverBorder = accentColor === 'amber' ? 'hover:border-amber' : 'hover:border-green';
+const hoverGlow = accentColor === 'amber' ? 'hover:glow-amber' : 'hover:glow-green';
+const accentText = accentColor === 'amber' ? 'text-amber' : 'text-green';
+const indexLabel = String(index + 1).padStart(2, '0');
+
+// Featured tier gets a persistent border + glow instead of hover-only.
+const featuredRing = featured
+  ? (accentColor === 'amber' ? 'border-amber glow-amber' : 'border-green glow-green')
+  : 'border-bc-border';
+---
+
+<article
+  class:list={[
+    'relative flex flex-col bg-bg-card border p-7 transition-all duration-300 group',
+    accentClass,
+    featuredRing,
+    hoverBorder,
+    hoverGlow,
+    featured ? 'md:-translate-y-3' : '',
+  ]}
+  style="border-radius: 5px;"
+>
+  {featured && (
+    <span
+      class="absolute -top-3 left-7 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-1 bg-green text-bg-base"
+      style="border-radius: 2px;"
+    >
+      Most popular
+    </span>
+  )}
+
+  <!-- Index label -->
+  <span class="absolute top-5 right-6 font-mono text-xs text-bc-muted opacity-50">{indexLabel}</span>
+
+  <!-- Tier name + tagline -->
+  <h3 class="text-bc-text font-semibold text-xl mb-2">{name}</h3>
+  <p class="text-bc-muted text-sm leading-relaxed mb-6 min-h-[2.5rem]">{tagline}</p>
+
+  <!-- Price -->
+  <div class="flex items-baseline gap-2 mb-6 pb-6 border-b border-bc-border">
+    <span class:list={['font-mono text-4xl font-bold', accentText]}>{price}</span>
+    {priceNote && <span class="font-mono text-xs text-bc-muted tracking-wide">{priceNote}</span>}
+  </div>
+
+  <!-- Features -->
+  <ul class="space-y-3 mb-8 flex-1">
+    {features.map((feature) => (
+      <li class="flex items-start gap-3 text-sm text-bc-muted leading-relaxed">
+        <svg
+          class:list={['mt-0.5 flex-shrink-0', accentText]}
+          width="16" height="16" viewBox="0 0 16 16" fill="none"
+          aria-hidden="true"
+        >
+          <path d="M3 8.5l3.2 3L13 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>{feature}</span>
+      </li>
+    ))}
+  </ul>
+
+  <!-- CTA -->
+  <a
+    href={ctaHref}
+    class:list={[
+      'inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold font-mono text-sm tracking-wide transition-all duration-200',
+      featured
+        ? 'bg-green text-bg-base glow-green hover:glow-green-hi hover:bg-green-hi'
+        : 'border border-bc-border text-bc-text hover:border-green hover:text-green',
+    ]}
+    style="border-radius: 5px;"
+  >
+    {ctaLabel}
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</article>

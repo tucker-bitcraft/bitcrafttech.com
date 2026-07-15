@@ -1,0 +1,129 @@
+---
+title: Stacks & Queues
+description: Two of the most useful data structures in programming — how they work, when to reach for each, and how to build them from scratch.
+order: 1
+group: Data Structures
+difficulty: beginner
+tags: ['data-structures', 'python', 'fundamentals']
+updated: 2026-07-14
+---
+
+import Callout from '@/components/docs/Callout.astro';
+
+A **stack** and a **queue** are both collections that hold items in a line. The
+only difference is *which end you take from* — and that single choice changes
+everything about what they're good for.
+
+## The one-sentence version
+
+- A **stack** is **LIFO** — Last In, First Out. The last thing you add is the first thing you remove. Think of a stack of plates.
+- A **queue** is **FIFO** — First In, First Out. The first thing you add is the first thing you remove. Think of a line at the coffee shop.
+
+<Callout type="tip" title="Why you should care">
+Stacks and queues show up *everywhere*: the call stack that runs your functions,
+undo/redo, browser history, breadth-first search, job queues, and — as you'll
+see in the [RPN Calculator project](/bitsnbytes/projects/rpn-calculator) — parsing
+and evaluating expressions.
+</Callout>
+
+## Stacks
+
+A stack supports two core operations:
+
+- **push** — add an item to the top
+- **pop** — remove and return the top item
+
+Both happen at the *same end*. Because you only ever touch the top, both
+operations are **O(1)** — constant time, no matter how big the stack gets.
+
+In Python you don't need a special class — a plain `list` already behaves like a
+stack, where `append` is push and `pop` is pop:
+
+```python
+stack = []
+stack.append("a")   # push
+stack.append("b")   # push
+stack.append("c")   # push
+
+top = stack.pop()   # -> "c"  (last in, first out)
+print(stack)        # -> ["a", "b"]
+```
+
+### Building one from scratch
+
+Understanding a structure means being able to build it. Here's a tiny explicit
+`Stack` — no magic, just the two operations plus a couple of conveniences:
+
+```python
+class Stack:
+    def __init__(self):
+        self._items = []
+
+    def push(self, item):
+        self._items.append(item)
+
+    def pop(self):
+        if not self._items:
+            raise IndexError("pop from empty stack")
+        return self._items.pop()
+
+    def peek(self):
+        """Look at the top item without removing it."""
+        return self._items[-1]
+
+    def is_empty(self):
+        return len(self._items) == 0
+
+    def __len__(self):
+        return len(self._items)
+```
+
+<Callout type="warning" title="Always guard the empty case">
+Popping from an empty stack is the classic bug. Decide up front whether it
+should raise an error (like above) or return a sentinel — and be consistent.
+</Callout>
+
+## Queues
+
+A queue also supports two core operations, but at *opposite* ends:
+
+- **enqueue** — add an item to the back
+- **dequeue** — remove and return the item at the front
+
+You *can* use a `list` for this, but don't: removing from the front
+(`list.pop(0)`) is **O(n)** because every remaining element has to shift down one
+slot. Python gives you the right tool in the standard library —
+`collections.deque` — where both ends are O(1):
+
+```python
+from collections import deque
+
+queue = deque()
+queue.append("a")       # enqueue
+queue.append("b")       # enqueue
+queue.append("c")       # enqueue
+
+front = queue.popleft() # -> "a"  (first in, first out)
+print(queue)            # -> deque(["b", "c"])
+```
+
+## Stack vs. queue at a glance
+
+| | Stack | Queue |
+|---|---|---|
+| Order | LIFO (last in, first out) | FIFO (first in, first out) |
+| Add to | top | back |
+| Remove from | top | front |
+| Python tool | `list` | `collections.deque` |
+| Add / remove cost | O(1) | O(1) |
+| Classic use | undo, call stack, expression eval | scheduling, BFS, buffering |
+
+## Where this goes next
+
+The single most important thing to internalize: **a stack lets you defer work
+and come back to the most recent thing first.** That's exactly what you need to
+evaluate math without parentheses.
+
+Ready to use it for real? Build the
+[RPN Calculator](/bitsnbytes/projects/rpn-calculator) — it's a stack and about
+forty lines of Python.

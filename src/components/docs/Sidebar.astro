@@ -1,0 +1,65 @@
+---
+import { urlOf, accentText, type SidebarSection } from '@/lib/docs';
+
+interface Props {
+  sidebar: SidebarSection[];
+  currentId?: string;
+}
+
+const { sidebar, currentId } = Astro.props;
+---
+
+<nav class="font-mono text-sm" aria-label="Documentation">
+  <a
+    href="/bitsnbytes"
+    class:list={[
+      'flex items-center gap-2 mb-6 text-xs tracking-[0.2em] uppercase transition-colors',
+      currentId === undefined ? 'text-bc-text' : 'text-bc-muted hover:text-bc-text',
+    ]}
+  >
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M2 8l4-4M2 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Bits &amp; Bytes
+  </a>
+
+  {sidebar.map((section) => (
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-3">
+        <span class:list={['flex-shrink-0', accentText[section.meta.accent]]} set:html={section.meta.icon} />
+        <span class="text-bc-text text-xs tracking-[0.18em] uppercase font-semibold">
+          {section.meta.label}
+        </span>
+      </div>
+
+      {section.groups.map((group) => (
+        <div class="mb-3">
+          {group.name && (
+            <p class="text-bc-muted text-[0.68rem] tracking-[0.15em] uppercase pl-3 mb-1.5 mt-3">
+              {group.name}
+            </p>
+          )}
+          <ul class="space-y-0.5 border-l border-bc-border">
+            {group.items.map((item) => {
+              const active = item.id === currentId;
+              return (
+                <li>
+                  <a
+                    href={urlOf(item)}
+                    aria-current={active ? 'page' : undefined}
+                    class:list={[
+                      'block pl-3 -ml-px py-1.5 border-l transition-colors leading-snug',
+                      active
+                        ? [accentText[section.meta.accent], 'border-current']
+                        : 'border-transparent text-bc-muted hover:text-bc-text hover:border-bc-border-hi',
+                    ]}
+                  >
+                    {item.data.title}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+    </div>
+  ))}
+</nav>

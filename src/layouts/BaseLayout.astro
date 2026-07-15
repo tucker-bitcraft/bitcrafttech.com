@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import Nav from '@/components/Nav.astro';
+import Footer from '@/components/Footer.astro';
 
 interface Props {
   title?: string;
@@ -8,9 +10,9 @@ interface Props {
 }
 
 const {
-  title = 'Bitcraft Tech — Industrial Software Solutions',
-  description = 'Bitcraft Tech builds industrial-grade software with precision and purpose.',
-  ogImage = '/og-image.png',
+  title = 'Bitcraft Technologies - Custom Websites & Software in Mesa, AZ',
+  description = 'Local software and web development for East Valley small businesses. Custom websites, online booking, and business tools built by a Mesa-based engineer. Plus ongoing care to keep them running.',
+  ogImage = '/favicon.svg',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://bitcrafttech.com');
@@ -23,6 +25,27 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://bitcraft
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Set the theme before first paint to avoid a flash. Stored choice wins,
+         otherwise fall back to the OS preference; default is dark. -->
+    <script is:inline>
+      (() => {
+        try {
+          // A ?theme=light|dark URL param wins and is remembered (shareable link).
+          const param = new URLSearchParams(location.search).get('theme');
+          if (param === 'light' || param === 'dark') {
+            localStorage.setItem('theme', param);
+          }
+          const stored = localStorage.getItem('theme');
+          const prefersLight =
+            window.matchMedia('(prefers-color-scheme: light)').matches;
+          const theme = stored ?? (prefersLight ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } catch {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -52,7 +75,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://bitcraft
   </head>
   <body>
     <div id="page-content">
+      <Nav />
       <slot />
+      <Footer />
     </div>
   </body>
 </html>

@@ -1,0 +1,192 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/Section.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import PricingCard from '@/components/PricingCard.astro';
+import {
+  projectPackages,
+  monthlyPlans,
+  addOns,
+  pricingFaqs,
+} from '@/data/pricing';
+---
+
+<BaseLayout
+  title="Pricing - Bitcraft Technologies"
+  description="Transparent, no-surprises pricing for custom websites, booking tools, and software built for East Valley small businesses. Project packages, monthly care plans, and a free mockup."
+>
+  <main>
+    <!-- ─────────────────────────────  PAGE HEADER  ───────────────────────────── -->
+    <section class="relative overflow-hidden bg-bg-base">
+      <!-- Top accent line -->
+      <div
+        class="absolute top-0 left-0 right-0 h-px"
+        style="background: linear-gradient(90deg, transparent, #3E8B5E, transparent);"
+      ></div>
+      <!-- Grid texture -->
+      <div
+        class="absolute inset-0 opacity-40"
+        style="background-image: linear-gradient(rgba(62,139,94,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(62,139,94,0.05) 1px, transparent 1px); background-size: 64px 64px;"
+      ></div>
+
+      <div class="relative max-w-7xl mx-auto px-6 pt-24 pb-16 text-center">
+        <p class="font-mono text-green text-xs tracking-[0.25em] uppercase mb-6">
+          // PRICING
+        </p>
+        <h1 class="text-4xl md:text-6xl font-bold leading-[1.05] text-bc-text mb-6">
+          Clear prices.<br />
+          <span class="text-green text-glow-green">No surprises.</span>
+        </h1>
+        <p class="text-bc-muted text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+          Straightforward pricing for websites, booking tools, and custom software.
+          Every project starts with a free mockup and a fixed quote. You'll never
+          get a mystery invoice.
+        </p>
+
+        <!-- Reassurance strip -->
+        <div class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-3 font-mono text-xs text-bc-muted tracking-wide">
+          {[
+            'Fixed quotes, no hourly surprises',
+            'Free mockup before you commit',
+            'You talk to the developer',
+          ].map((item) => (
+            <span class="inline-flex items-center gap-2">
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-green" style="box-shadow: 0 0 8px #4CAF75;"></span>
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  PROJECT PACKAGES  ───────────────────────────── -->
+    <section class="relative bg-bg-section clip-angle-both" style="padding-top: calc(5rem + 40px); padding-bottom: calc(5rem + 40px);">
+      <div class="max-w-7xl mx-auto px-6">
+        <SectionHeading
+          label="// 01 PROJECT PACKAGES"
+          title="Built Once, Done Right"
+          subtitle="One-time builds for your website and software. Pick a starting point; we'll tailor the exact scope to your business."
+        />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          {projectPackages.map((tier, i) => (
+            <PricingCard {...tier} index={i} />
+          ))}
+        </div>
+
+        <p class="mt-8 font-mono text-xs text-bc-muted text-center">
+          Prices are starting points. Your free quote is fixed before any work begins.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  MONTHLY PLANS  ───────────────────────────── -->
+    <Section>
+      <SectionHeading
+        label="// 02 MONTHLY PLANS"
+        title="Keep It Running"
+        subtitle="Ongoing care so your site stays fast, secure, and current; and your whole setup keeps humming. Flat monthly rate, cancel anytime."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch max-w-4xl">
+        {monthlyPlans.map((tier, i) => (
+          <PricingCard {...tier} index={i} />
+        ))}
+      </div>
+    </Section>
+
+    <!-- ─────────────────────────────  ADD-ONS  ───────────────────────────── -->
+    <section class="relative bg-bg-section clip-angle-both" style="padding-top: calc(5rem + 40px); padding-bottom: calc(5rem + 40px);">
+      <div class="max-w-7xl mx-auto px-6">
+        <SectionHeading
+          label="// 03 ADD-ONS"
+          title="À La Carte"
+          subtitle="Mix and match extras onto any package. Only pay for what you actually need."
+        />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {addOns.map((addOn) => (
+            <div
+              class="flex items-center justify-between gap-4 bg-bg-card border border-bc-border px-5 py-4 hover:border-green transition-colors"
+              style="border-radius: 5px;"
+            >
+              <span class="text-bc-text text-sm">{addOn.label}</span>
+              <span class="font-mono text-sm text-green whitespace-nowrap">{addOn.price}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  FAQ  ───────────────────────────── -->
+    <Section>
+      <SectionHeading
+        label="// 04 FAQ"
+        title="Good Questions"
+        subtitle="The stuff people usually ask before getting started."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {pricingFaqs.map((faq) => (
+          <div
+            class="bg-bg-card border border-bc-border card-accent-green p-6"
+            style="border-radius: 5px;"
+          >
+            <h3 class="text-bc-text font-semibold text-base mb-2 flex items-start gap-2">
+              <span class="font-mono text-green text-sm">Q.</span>
+              {faq.q}
+            </h3>
+            <p class="text-bc-muted text-sm leading-relaxed pl-6">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+
+    <!-- ─────────────────────────────  CTA - FREE MOCKUP  ───────────────────────────── -->
+    <section class="relative bg-bg-base" style="padding-top: calc(5rem + 40px); padding-bottom: 6rem;">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="relative overflow-hidden bg-bg-card border border-green glow-green px-8 py-14 md:px-16 md:py-16 text-center"
+          style="border-radius: 8px;"
+        >
+          <!-- Grid texture inside CTA -->
+          <div
+            class="absolute inset-0 opacity-30 pointer-events-none"
+            style="background-image: linear-gradient(rgba(62,139,94,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(62,139,94,0.06) 1px, transparent 1px); background-size: 40px 40px;"
+          ></div>
+
+          <div class="relative">
+            <p class="font-mono text-green text-xs tracking-[0.25em] uppercase mb-5">
+              // NO OBLIGATION
+            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-bc-text mb-4">
+              See it before you buy it.
+            </h2>
+            <p class="text-bc-muted text-lg leading-relaxed max-w-xl mx-auto mb-10">
+              Not sure which package fits? Get a free mockup of your site. A real
+              preview, built before you spend a dollar. Then we'll talk numbers.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+              <a
+                href="/contact"
+                class="inline-flex items-center gap-2 px-7 py-3.5 bg-green text-bg-base font-semibold font-mono text-sm tracking-wide glow-green hover:glow-green-hi hover:bg-green-hi transition-all duration-200"
+                style="border-radius: 5px;"
+              >
+                Get a free mockup
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a
+                href="/contact"
+                class="inline-flex items-center gap-2 px-7 py-3.5 border border-bc-border text-bc-text font-mono text-sm tracking-wide hover:border-green hover:text-green transition-all duration-200"
+                style="border-radius: 5px;"
+              >
+                Ask a question
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

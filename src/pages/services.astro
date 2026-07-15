@@ -1,0 +1,132 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/Section.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import ServiceDetail from '@/components/ServiceDetail.astro';
+import { services } from '@/data/services';
+---
+
+<BaseLayout
+  title="Services - Bitcraft Technologies"
+  description="Custom websites, online booking, business tools, and software. Built and supported by a Mesa-based engineer for East Valley small businesses. See exactly what you get."
+>
+  <main>
+    <!-- ─────────────────────────────  PAGE HEADER  ───────────────────────────── -->
+    <section class="relative overflow-hidden bg-bg-base">
+      <!-- Top accent line -->
+      <div
+        class="absolute top-0 left-0 right-0 h-px"
+        style="background: linear-gradient(90deg, transparent, #3E8B5E, transparent);"
+      ></div>
+      <!-- Grid texture -->
+      <div
+        class="absolute inset-0 opacity-40"
+        style="background-image: linear-gradient(rgba(62,139,94,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(62,139,94,0.05) 1px, transparent 1px); background-size: 64px 64px;"
+      ></div>
+
+      <div class="relative max-w-7xl mx-auto px-6 pt-24 pb-16">
+        <p class="font-mono text-green text-xs tracking-[0.25em] uppercase mb-6">
+          // SERVICES
+        </p>
+        <h1 class="text-4xl md:text-6xl font-bold leading-[1.05] text-bc-text mb-6 max-w-3xl">
+          Everything your business<br />
+          needs online. <span class="text-green text-glow-green">Built local.</span>
+        </h1>
+        <p class="text-bc-muted text-lg md:text-xl leading-relaxed max-w-2xl">
+          From a website that gets you calls to custom software that runs your
+          operation; all designed, built, and supported by the same engineer.
+          No agencies, no handoffs, no jargon.
+        </p>
+
+        <!-- Quick jump nav -->
+        <nav class="mt-12 flex flex-wrap gap-3" aria-label="Jump to a service">
+          {services.map((service) => (
+            <a
+              href={`#${service.slug}`}
+              class="font-mono text-xs text-bc-muted border border-bc-border px-4 py-2 hover:border-green hover:text-green transition-colors"
+              style="border-radius: 2px;"
+            >
+              {service.title}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  SERVICE DETAILS  ───────────────────────────── -->
+    <section class="relative bg-bg-section clip-angle-both" style="padding-top: calc(5rem + 40px); padding-bottom: calc(5rem + 40px);">
+      <div class="max-w-7xl mx-auto px-6 space-y-24 md:space-y-32">
+        {services.map((service, i) => (
+          <ServiceDetail {...service} index={i} />
+        ))}
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────  PRICING NUDGE  ───────────────────────────── -->
+    <Section>
+      <div class="text-center max-w-2xl mx-auto">
+        <SectionHeading
+          label="// TRANSPARENT PRICING"
+          title="Know the Cost Up Front"
+          subtitle="Every service is priced clearly; no hourly surprises. Check the numbers, then get a fixed quote for your project."
+          align="center"
+        />
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-7 py-3.5 border border-bc-border text-bc-text font-mono text-sm tracking-wide hover:border-green hover:text-green transition-all duration-200"
+          style="border-radius: 5px;"
+        >
+          See pricing
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </Section>
+
+    <!-- ─────────────────────────────  CTA — FREE MOCKUP  ───────────────────────────── -->
+    <section class="relative bg-bg-base" style="padding-bottom: 6rem;">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="relative overflow-hidden bg-bg-card border border-green glow-green px-8 py-14 md:px-16 md:py-16 text-center"
+          style="border-radius: 8px;"
+        >
+          <!-- Grid texture inside CTA -->
+          <div
+            class="absolute inset-0 opacity-30 pointer-events-none"
+            style="background-image: linear-gradient(rgba(62,139,94,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(62,139,94,0.06) 1px, transparent 1px); background-size: 40px 40px;"
+          ></div>
+
+          <div class="relative">
+            <p class="font-mono text-green text-xs tracking-[0.25em] uppercase mb-5">
+              // NO OBLIGATION
+            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-bc-text mb-4">
+              Not sure where to start?
+            </h2>
+            <p class="text-bc-muted text-lg leading-relaxed max-w-xl mx-auto mb-10">
+              Tell me what you're trying to fix or build. I'll point you to the
+              right service and design a free mockup before you commit a dollar.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+              <a
+                href="/contact"
+                class="inline-flex items-center gap-2 px-7 py-3.5 bg-green text-bg-base font-semibold font-mono text-sm tracking-wide glow-green hover:glow-green-hi hover:bg-green-hi transition-all duration-200"
+                style="border-radius: 5px;"
+              >
+                Get a free mockup
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a
+                href="/pricing"
+                class="inline-flex items-center gap-2 px-7 py-3.5 border border-bc-border text-bc-text font-mono text-sm tracking-wide hover:border-green hover:text-green transition-all duration-200"
+                style="border-radius: 5px;"
+              >
+                View pricing
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

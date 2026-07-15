@@ -1,0 +1,74 @@
+---
+title: Big-O Notation
+description: A plain-language guide to how we talk about the cost of code, what Big-O actually measures, and the handful of classes you'll meet in practice.
+order: 2
+group: Concepts
+difficulty: beginner
+tags: ['concepts', 'complexity', 'fundamentals']
+updated: 2026-07-14
+---
+
+import Callout from '@/components/docs/Callout.astro';
+
+Big-O notation answers one question: **as the input grows, how does the amount
+of work grow?** It deliberately ignores constants and hardware so you can
+compare *approaches* instead of machines.
+
+## It's about growth, not seconds
+
+If a function takes the same amount of time whether you give it 10 items or 10
+million, it's **O(1)** -> constant. If doubling the input roughly doubles the
+work, it's **O(n)** -> linear. The letter is a shape, not a stopwatch.
+
+<Callout type="note" title="The mental model">
+Imagine graphing "work" against "input size." Big-O names the *curve* the graph
+settles into once the input gets large. Everything else; the exact numbers, the
+small inputs, is noise.
+</Callout>
+
+## The classes you'll actually meet
+
+| Notation | Name | Doubling the input... | Example |
+|---|---|---|---|
+| O(1) | constant | ...changes nothing | array index, stack push |
+| O(log n) | logarithmic | ...adds one step | binary search |
+| O(n) | linear | ...doubles the work | scanning a list |
+| O(n log n) | linearithmic | ...a bit more than doubles | good sorting |
+| O(n²) | quadratic | ...quadruples the work | nested loops over the same data |
+
+## Reading it off your code
+
+A quick heuristic: **count the nested loops over the input.**
+
+```python
+# O(n) -> one pass
+def contains(items, target):
+    for item in items:          # runs n times
+        if item == target:
+            return True
+    return False
+
+# O(n^2) -> a loop inside a loop, both over the input
+def has_duplicate(items):
+    for i in items:             # n times ...
+        for j in items:         # ... times n
+            if i is not j and i == j:
+                return True
+    return False
+```
+
+The second version does `n × n` comparisons. At 1,000 items that's a million;
+at 1,000,000 items it's a *trillion*. Recognizing that jump is the whole point.
+
+<Callout type="tip" title="This connects to everything">
+When a lesson says an operation is "O(1)", like `push`/`pop` in
+[Stacks & Queues](/bitsnbytes/components/stacks-and-queues), this is the
+vocabulary it's using. Cheap operations keep the whole program cheap.
+</Callout>
+
+## What Big-O leaves out
+
+Big-O hides constant factors, so an O(n) algorithm *can* be slower than an O(n²)
+one on small inputs. It's a tool for reasoning about **scale**, not a promise
+about any single run. Use it to pick an approach; use a real benchmark to tune
+one.

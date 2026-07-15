@@ -9,26 +9,31 @@ import SectionHeading from './SectionHeading.astro';
       <!-- Left: text -->
       <div>
         <SectionHeading
-          label="// 03 — ABOUT"
+          label="// 03 ABOUT"
           title="The Shop"
         />
 
         <div class="space-y-5 text-bc-muted leading-relaxed">
           <p>
-            Bitcraft Tech is an independent software engineering shop built for people who care about how software actually works — not just whether it works.
+            Bitcraft is a software shop in Mesa, built for local businesses
+            that want their website and tools done right; by someone they can actually 
+            reach.
           </p>
           <p>
-            We specialise in the kind of work that demands real engineering: systems-level software, high-reliability platforms, and tools that developers actually want to use. No resume-padding tech choices, no unnecessary complexity.
+            We specialize in building custom software for small businesses, from websites
+            to internal tools, and everything in between. We focus on quality, maintainability,
+            and performance; so your software works for you, not against you.
           </p>
           <p>
-            We're small by design. That means every engagement gets senior-level attention, direct communication, and zero layers of project management between you and the code.
+            We're small by design. That means every engagement gets senior-level attention,
+            direct communication, and zero layers of project management between you and the code.
           </p>
         </div>
 
         <!-- Values -->
         <div class="mt-10 space-y-4">
           {[
-            { label: 'Craft over cargo-cult', desc: 'We choose technology based on the problem, not the trend.' },
+            { label: 'Honest pricing', desc: 'We choose technology based on the problem, not the trend.' },
             { label: 'Transparency by default', desc: 'You always know what we\'re building and why.' },
             { label: 'Boring where it counts', desc: 'Reliable, proven fundamentals. Interesting only where it matters.' },
           ].map(({ label, desc }) => (
@@ -48,7 +53,7 @@ import SectionHeading from './SectionHeading.astro';
         <!-- Decorative bracket element -->
         <div
           class="relative p-8 border border-bc-border bg-bg-card overflow-hidden"
-          style="border-radius: 2px;"
+          style="border-radius: 5px;"
         >
           <!-- Corner accents -->
           <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-green"></div>
@@ -58,21 +63,21 @@ import SectionHeading from './SectionHeading.astro';
 
           <p class="font-mono text-xs text-green tracking-widest mb-4">// MISSION STATEMENT</p>
           <blockquote class="text-bc-text text-lg leading-relaxed font-light italic">
-            "Software should be a force multiplier — not a liability you inherit."
+            "Software should be a force multiplier; not a liability you inherit."
           </blockquote>
         </div>
 
         <!-- Founder / team card -->
         <div
           class="p-6 border border-bc-border bg-bg-card card-accent-amber"
-          style="border-radius: 2px;"
+          style="border-radius: 5px;"
         >
           <p class="font-mono text-xs text-bc-muted tracking-widest mb-4">// FOUNDER</p>
           <div class="flex items-start gap-4">
             <!-- Avatar placeholder -->
             <div
               class="w-14 h-14 flex items-center justify-center bg-bg-section border border-bc-border flex-shrink-0 font-mono text-green font-bold text-lg"
-              style="border-radius: 2px;"
+              style="border-radius: 5px;"
             >
               TB
             </div>
@@ -87,13 +92,13 @@ import SectionHeading from './SectionHeading.astro';
         </div>
 
         <!-- Tech stack strip -->
-        <div class="border border-bc-border bg-bg-card p-5" style="border-radius: 2px;">
+        <div class="border border-bc-border bg-bg-card p-5" style="border-radius: 5px;">
           <p class="font-mono text-xs text-bc-muted tracking-widest mb-4">// STACK</p>
           <div class="flex flex-wrap gap-2">
             {['Rust', 'C/C++', 'TypeScript', 'Python', 'Go', 'Linux', 'Postgres', 'Kubernetes', 'RTOS', 'AWS'].map((tech) => (
               <span
                 class="font-mono text-xs text-bc-muted border border-bc-border px-2 py-1 hover:border-green hover:text-green transition-colors"
-                style="border-radius: 2px;"
+                style="border-radius: 5px;"
               >
                 {tech}
               </span>

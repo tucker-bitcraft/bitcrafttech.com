@@ -1,0 +1,52 @@
+---
+import {
+  getSection,
+  sectionOf,
+  accentText,
+  difficultyColor,
+  type Entry,
+} from '@/lib/docs';
+
+interface Props {
+  entry: Entry;
+}
+const { entry } = Astro.props;
+const section = getSection(sectionOf(entry));
+const { title, description, difficulty, tags } = entry.data;
+const diffAccent = difficulty ? difficultyColor[difficulty] : null;
+---
+
+<header class="mb-8 pb-8 border-b border-bc-border">
+  <div class="flex items-center gap-3 mb-4 font-mono text-xs">
+    <span class:list={['tracking-[0.2em] uppercase', accentText[section.accent]]}>
+      {section.label}
+    </span>
+    {difficulty && (
+      <span
+        class:list={[
+          'px-2 py-0.5 border tracking-[0.1em] uppercase',
+          accentText[diffAccent!],
+          diffAccent === 'green' ? 'border-green' : diffAccent === 'amber' ? 'border-amber' : 'border-orange',
+        ]}
+        style="border-radius: 3px;"
+      >
+        {difficulty}
+      </span>
+    )}
+  </div>
+
+  <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-bc-text leading-tight mb-4">
+    {title}
+  </h1>
+  <p class="text-bc-muted text-lg leading-relaxed max-w-3xl">{description}</p>
+
+  {tags.length > 0 && (
+    <div class="flex flex-wrap gap-2 mt-5">
+      {tags.map((tag) => (
+        <span class="font-mono text-xs text-bc-muted bg-bg-card border border-bc-border px-2.5 py-1" style="border-radius: 3px;">
+          {tag}
+        </span>
+      ))}
+    </div>
+  )}
+</header>

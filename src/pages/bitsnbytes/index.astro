@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import DocsLayout from '@/layouts/DocsLayout.astro';
+import {
+  buildSidebar,
+  urlOf,
+  accentText,
+  accentCardTop,
+  difficultyColor,
+  type Entry,
+} from '@/lib/docs';
+
+const all = (await getCollection('bitsnbytes')).filter((e) => !e.data.draft);
+const sidebar = buildSidebar(all);
+---
+
+<DocsLayout
+  title="Bits & Bytes"
+  description="Documentation and hands-on learning from Bitcraft Tech. Software-engineering fundamentals, full college-style projects you can clone and run, and reference docs for the Bitcraft Lab stack."
+  sidebar={sidebar}
+>
+  <div class="mb-14">
+    <p class="font-mono text-green text-xs tracking-[0.2em] uppercase mb-3">// BITS &amp; BYTES</p>
+    <h1 class="text-4xl md:text-5xl font-bold text-bc-text leading-tight mb-5">
+      <span class="text-bc-muted font-light">[</span> Learn &amp; Reference <span class="text-bc-muted font-light">]</span>
+    </h1>
+    <p class="text-bc-muted text-lg leading-relaxed max-w-2xl">
+      A growing library of software-engineering fundamentals, full projects you can
+      clone and run, and reference documentation for the software built in the
+      Bitcraft Lab. Read a component, build a project, ship something real.
+    </p>
+  </div>
+
+  {sidebar.map((section) => (
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-2">
+        <span class:list={['flex-shrink-0', accentText[section.meta.accent]]} set:html={section.meta.icon} />
+        <h2 class="text-2xl font-bold text-bc-text">{section.meta.label}</h2>
+      </div>
+      <p class="text-bc-muted mb-6 max-w-2xl">{section.meta.description}</p>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {section.groups.flatMap((g) => g.items).map((item: Entry) => {
+          const diff = item.data.difficulty ? difficultyColor[item.data.difficulty] : null;
+          // Literal group-hover class so Tailwind's JIT can see it.
+          const titleHover =
+            section.meta.accent === 'green'
+              ? 'group-hover:text-green'
+              : section.meta.accent === 'amber'
+                ? 'group-hover:text-amber'
+                : 'group-hover:text-orange';
+          return (
+            <a
+              href={urlOf(item)}
+              class:list={[
+                'group block bg-bg-card border border-bc-border hover:border-bc-border-hi transition-colors p-5',
+                accentCardTop[section.meta.accent],
+              ]}
+              style="border-radius: 8px;"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <h3 class:list={['text-bc-text font-semibold transition-colors', titleHover]}>
+                  {item.data.title}
+                </h3>
+                {item.data.difficulty && (
+                  <span class:list={['font-mono text-[0.65rem] tracking-wider uppercase flex-shrink-0 mt-1', accentText[diff!]]}>
+                    {item.data.difficulty}
+                  </span>
+                )}
+              </div>
+              <p class="text-bc-muted text-sm mt-2 leading-relaxed">{item.data.description}</p>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  ))}
+</DocsLayout>

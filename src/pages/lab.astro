@@ -1,0 +1,49 @@
+---
+import ProjectCard from "@/components/ProjectCard.astro";
+import Section from "@/components/Section.astro";
+import SectionHeading from "@/components/SectionHeading.astro"
+import { projectList } from "@/data/lab_projects";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+    title="Bitcraft Tech - Projects"
+    description="Current projects we are working on"
+>
+    <main>
+      <Section>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full  items-center mb-8">
+            <SectionHeading
+          label="// Software that thinks in systems"
+          title="Cogni"
+          subtitle="Bitcraft builds the layers beneath the interface; the memory systems, dispatch runtimes, and cognitive engines that make intelligent software actually intelligent. Each component is purpose-designed, locally deployable, and built to integrate with the broader ecosystem it lives in. This is the stack powering Echo."
+            align="left"
+          />
+        
+          <img
+          src="Bit_Fixing_Server.png"
+          alt="Bitcraft designing software"
+          class="w-1/2 justify-self-start md:justify-self-end"
+        />
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {projectList.filter((project)=>project.category == "software").map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </Section>
+      <Section>
+        <SectionHeading
+          label="// Connected isn't enough anymore"
+          title="Silkin"
+          subtitle="Silkin is where the stack meets the physical world. A family of intelligent hardware devices, presence nodes, IoT sensors, and animatronic companions. Each one designed to sense its environment, communicate across a shared mesh, and plug directly into Echo's memory and reasoning systems. The result is hardware that doesn't just respond to you. It understands context, remembers patterns, and gets smarter over time."
+        />
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {projectList.filter((project)=>project.category == "hardware").map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </Section>
+    </main>
+</BaseLayout>

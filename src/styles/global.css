@@ -9,6 +9,84 @@
 @tailwind components;
 @tailwind utilities;
 
+/* -------------------------------------------------------------------------- */
+/* THEME TOKENS                                                                */
+/* -------------------------------------------------------------------------- */
+/* The Tailwind color tokens (bg-base, bc-text, green, …) resolve to these     */
+/* variables, so every utility class re-colors automatically when the theme    */
+/* flips. Dark is the default; light is applied via data-theme="light" on      */
+/* <html> (set by the no-flash script in BaseLayout).                          */
+/*                                                                             */
+/* Light mode keeps every hue from the original dark palette — only the        */
+/* lightness is adjusted so the same colors stay legible on the #edddc2 cream. */
+/* -------------------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+
+  --color-bg-base:      #0D0D0D;
+  --color-bg-section:   #141414;
+  --color-bg-card:      #1E1E1E;
+  --color-bc-border:    #2A2A2A;
+  --color-bc-border-hi: #333333;
+  --color-green:        #3E8B5E;
+  --color-green-hi:     #4CAF75;
+  --color-amber:        #E8A020;
+  --color-orange:       #E55C1A;
+  --color-bc-text:      #E8E0D0;
+  --color-bc-muted:     #7A7065;
+
+  /* Decorative helpers (see utilities below). */
+  --dot-color:  rgba(255, 255, 255, 0.03);
+  --scan-color: rgba(255, 255, 255, 0.015);
+
+  --glow-green:      rgba(62, 139, 94, 0.30);
+  --glow-green-hi:   rgba(76, 175, 117, 0.45);
+  --glow-amber:      rgba(232, 160, 32, 0.30);
+  --glow-orange:     rgba(229, 92, 26, 0.40);
+  --text-glow-green: rgba(76, 175, 117, 0.65);
+  --text-glow-amber: rgba(232, 160, 32, 0.65);
+
+  /* Translucent sticky-header fills (Nav). */
+  --header-bg:       rgba(13, 13, 13, 0.85);
+  --header-bg-solid: rgba(13, 13, 13, 0.97);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* Cream surface stack: base is the given #edddc2; sections recede slightly
+     darker, cards lift slightly lighter — mirroring the dark elevation feel. */
+  --color-bg-base:      #edddc2;
+  --color-bg-section:   #e6d4b6;
+  --color-bg-card:      #f5ecd9;
+  --color-bc-border:    #d7c5a3;
+  --color-bc-border-hi: #c7b085;
+
+  /* Accents: same hues, darkened just enough to read as small text on cream
+     and to keep the cream button label legible on the green fill. */
+  --color-green:    #276c42;
+  --color-green-hi: #2f8553;
+  --color-amber:    #855706;
+  --color-orange:   #a63a0b;
+
+  /* Warm near-black ink + a darker warm muted so both pass contrast on cream. */
+  --color-bc-text:  #2b2418;
+  --color-bc-muted: #6b5d49;
+
+  --dot-color:  rgba(70, 50, 15, 0.05);
+  --scan-color: rgba(60, 40, 10, 0.03);
+
+  --glow-green:      rgba(39, 108, 66, 0.22);
+  --glow-green-hi:   rgba(47, 133, 83, 0.30);
+  --glow-amber:      rgba(133, 87, 6, 0.22);
+  --glow-orange:     rgba(166, 58, 11, 0.28);
+  --text-glow-green: rgba(39, 108, 66, 0.30);
+  --text-glow-amber: rgba(133, 87, 6, 0.30);
+
+  --header-bg:       rgba(237, 221, 194, 0.82);
+  --header-bg-solid: rgba(237, 221, 194, 0.97);
+}
+
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
@@ -16,13 +94,13 @@
 
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
   }
 
   body {
     @apply bg-bg-base text-bc-text font-sans;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   /* CSS-only dot-grid texture overlay */
@@ -34,7 +112,7 @@
     pointer-events: none;
     background-image: radial-gradient(
       circle,
-      rgba(255, 255, 255, 0.03) 1px,
+      var(--dot-color) 1px,
       transparent 1px
     );
     background-size: 28px 28px;
@@ -47,24 +125,12 @@
 }
 
 @layer utilities {
-  .glow-green {
-    box-shadow: 0 0 20px rgba(62, 139, 94, 0.3);
-  }
-  .glow-green-hi {
-    box-shadow: 0 0 32px rgba(76, 175, 117, 0.45);
-  }
-  .glow-amber {
-    box-shadow: 0 0 20px rgba(232, 160, 32, 0.3);
-  }
-  .glow-orange {
-    box-shadow: 0 0 32px rgba(229, 92, 26, 0.4);
-  }
-  .text-glow-green {
-    text-shadow: 0 0 14px rgba(76, 175, 117, 0.65);
-  }
-  .text-glow-amber {
-    text-shadow: 0 0 14px rgba(232, 160, 32, 0.65);
-  }
+  .glow-green      { box-shadow: 0 0 20px var(--glow-green); }
+  .glow-green-hi   { box-shadow: 0 0 32px var(--glow-green-hi); }
+  .glow-amber      { box-shadow: 0 0 20px var(--glow-amber); }
+  .glow-orange     { box-shadow: 0 0 32px var(--glow-orange); }
+  .text-glow-green { text-shadow: 0 0 14px var(--text-glow-green); }
+  .text-glow-amber { text-shadow: 0 0 14px var(--text-glow-amber); }
 
   /* Angular clip-path dividers */
   .clip-angle-down {
@@ -78,15 +144,9 @@
   }
 
   /* Card top-accent lines */
-  .card-accent-green {
-    border-top: 1px solid #3E8B5E;
-  }
-  .card-accent-amber {
-    border-top: 1px solid #E8A020;
-  }
-  .card-accent-orange {
-    border-top: 1px solid #E55C1A;
-  }
+  .card-accent-green  { border-top: 1px solid var(--color-green); }
+  .card-accent-amber  { border-top: 1px solid var(--color-amber); }
+  .card-accent-orange { border-top: 1px solid var(--color-orange); }
 
   /* Scanline decorative element */
   .scanline {
@@ -94,8 +154,8 @@
       0deg,
       transparent,
       transparent 2px,
-      rgba(255, 255, 255, 0.015) 2px,
-      rgba(255, 255, 255, 0.015) 4px
+      var(--scan-color) 2px,
+      var(--scan-color) 4px
     );
   }
 }

@@ -1,0 +1,51 @@
+---
+title: Echo — Overview
+description: The cognitive engine at the center of the Bitcraft ecosystem. Start here for how Echo is structured and where the rest of the docs live.
+order: 1
+group: Echo
+tags: ['echo', 'architecture']
+updated: 2026-07-14
+---
+
+import Callout from '@/components/docs/Callout.astro';
+
+**Echo** is a locally-deployed AI assistant built for persistent context,
+modular capability, and real agency. It runs on open-weights models on dedicated
+hardware — it doesn't phone home. This section is the reference documentation for
+Echo and the components around it, the same software featured in the
+[Lab](/lab).
+
+<Callout type="note" title="Work in progress">
+These docs are being written alongside the software. This page is the landing
+point; component-level references are being filled in. Expect this section to
+grow.
+</Callout>
+
+## The stack at a glance
+
+Echo is not one program but a small constellation of cooperating components, each
+with a single responsibility:
+
+| Component | Responsibility |
+|---|---|
+| **Echo Core** | The cognitive loop — perception, reasoning, and decision-making. |
+| **Medulla** | Skill dispatch. Exposes callable capabilities ("Ports") to the outside world. |
+| **HippoDB** | Long-term memory. Graph-native, temperature-tiered (hot → warm → cold → archive). |
+| **Scratchpad** | Ephemeral working memory for a single reasoning session. |
+
+## How a thought becomes an action
+
+At a high level, one cycle of Echo's loop looks like this:
+
+1. **Perceive** — input arrives (a message, a sensor event, a timer).
+2. **Recall** — relevant memories are pulled from **HippoDB** into **Scratchpad**.
+3. **Reason** — Echo Core works the problem in Scratchpad's structured buckets.
+4. **Act** — when a decision is made, **Medulla** turns it into a real effect via a Port.
+5. **Commit** — what mattered is written back to HippoDB; the rest dissolves.
+
+## Where to go next
+
+Component-level pages live under this section in the sidebar. Each will cover its
+own API, configuration, and deployment. If you're here to *learn* rather than to
+integrate, the [Components](/bitsnbytes/components/stacks-and-queues) and
+[Projects](/bitsnbytes/projects/rpn-calculator) sections are the place to start.
